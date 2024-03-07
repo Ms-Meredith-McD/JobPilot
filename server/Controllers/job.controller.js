@@ -3,7 +3,7 @@ const Job = require("../Models/Job");
 
 async function getJobById(id){
   try {
-    return await Job.findById(id);
+    return await Job.findById(id).populate('notes');
   } catch(err){
     console.log(err.message)
     throw new Error(err)
