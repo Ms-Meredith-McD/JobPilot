@@ -1,34 +1,19 @@
-const mongoose = require('mongoose');
-
+const mongoose = require("mongoose");
 
 const jobSchema = new mongoose.Schema({
-  resume: {
-    sent: { type: Boolean},
-    date: { type: Date},
-    link: { type: String}
+  company: { type: String, required: true },
+  jobTitle: { type: String },
+  website: { type: String },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
   },
-  interviewDate: { type: Date},
-  interviewThankYou: {
-   email: { type: String},
-   sent: { type: Boolean}
+  notes: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "notes",
   },
-  interviewFollowUp: {
-    sent: { type: Boolean},
-    date: { type: Date},
-    email: { type: String}
-  },
-  other: {
-    title: { type: String, require: true},
-    description: { type: String, require: true},
-    completed: { type: Boolean}
-
-  },
-  notes: {  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note'}],
-},
-
 });
 
+const Job = mongoose.model("Job", jobSchema);
 
-const Job = mongoose.model('Job', jobSchema);
-
-module.exports = Job
+module.exports = Job;
