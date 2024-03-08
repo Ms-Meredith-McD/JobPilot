@@ -1,5 +1,10 @@
+@use "base/base";
+
+@use "components/background";
 @use "components/footer";
 @use "components/header";
 @use "components/jobs";
 @use "components/login";
+@use "components/page-section";
 @use "components/resume";
+@use "components/welcome";

@@ -2,7 +2,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Resume from "./pages/Resume";
-import Tracker from "./pages/Tracker";
+import Jobs from "./pages/Jobs";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -17,7 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/resume" element={<Resume />} />
-            <Route path="/tracker" element={<Tracker />} />
+            <Route path="/jobs" element={<Jobs />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </BrowserRouter>
