@@ -3,28 +3,32 @@ const mongoose = require('mongoose');
 
 const trackerSchema = new mongoose.Schema({
   resume: {
-    sent: { type: Boolean},
-    date: { type: Date},
-    link: { type: String}
+    sent: { type: Boolean },
+    date: { type: Date },
+    link: { type: String }
   },
-  interviewDate: { type: Date},
+  interviewDate: { type: Date },
   interviewThankYou: {
-   email: { type: String},
-   sent: { type: Boolean}
+    email: { type: String },
+    sent: { type: Boolean }
   },
   interviewFollowUp: {
-    sent: { type: Boolean},
-    date: { type: Date},
-    email: { type: String}
+    sent: { type: Boolean },
+    date: { type: Date },
+    email: { type: String }
   },
   other: {
-    title: { type: String, required: true},
-    description: { type: String, required: true},
-    completed: { type: Boolean}
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    completed: { type: Boolean }
 
   },
-  notes: {  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note'}],
-},
+  notes: {
+    notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
+  },
+  job: {
+    job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' },
+  }
 
 });
 
