@@ -3,7 +3,7 @@ function Header() {
 
     return (
         <div className="d-flex">
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100 p-2">
+            <nav className="navbar navbar-expand-lg navbar-dark w-100 p-2">
   <a className="navbar-brand" href="#">JobPilot</a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
