@@ -4,7 +4,7 @@ function Team() {
     return (
       <div>
       <div className="row bg-stars teamRow" id="teamContainer">
-  <h1>Meet the team that JobPilot possible!</h1>
+  <h1>Meet the team that made JobPilot possible!</h1>
 <div className="row teamRow">
   <h2>Jonathon Blom</h2>
   <div className="col-md-6 teamCol">
