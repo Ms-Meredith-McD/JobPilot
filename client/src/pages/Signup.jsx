@@ -1,40 +1,9 @@
-import React, { useState } from "react";
 
-function Modal({ isOpen, onClose, children }) {
-  if (!isOpen) {
-    return null;
-  }
-
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <span className="close-button" onClick={onClose}>
-          &times;
-        </span>
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function Signup() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-    
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
+  export default function Signup(){
+  
   return (
     <>
-      <button onClick={openModal}>Create Account</button>
-      <div className={isModalOpen ? "modal-position" : ""}>
-        <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <form>
+        <form className="signUpForm">
            <div className='form-center'>
            <div className="form-group">
              <label htmlFor="exampleInputEmail1">Name</label>
@@ -71,13 +40,10 @@ function Signup() {
           </button>
           </div>
         </form>
-        </Modal>
-      </div>
     </>
   );
 }
 
-export default Signup;
 
 
 
