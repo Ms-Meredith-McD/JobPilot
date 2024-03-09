@@ -15,7 +15,7 @@ const FileLinkForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="fileLink">Enter File Link:</label>
+            <label htmlFor="fileLink">Enter File Link: </label>
             <input
                 type="text"
                 id="fileLink"
