@@ -14,7 +14,7 @@ const jobSeeds = [
     jobTitle: "Lorem Employee",
     website: "https://www.lorem.com",
     user: "65eccc5ffc13ae7885cd367e",
-    notes: "65eccc5ffc13ae7885cd367f",
+    notes: "65eccc5ffc13ae7885cd36c1",
   },
   {
     _id: "65eccc5ffc13ae7885cd368d",
@@ -22,7 +22,7 @@ const jobSeeds = [
     jobTitle: "Ipsum Employee",
     website: "https://www.ipsum.com",
     user: "65eccc5ffc13ae7885cd36a6",
-    notes: "65eccc5ffc13ae7885cd3681",
+    notes: "65eccc5ffc13ae7885cd36c3",
   },
 ];
 
