@@ -62,6 +62,7 @@ const noteSeeds = [
 
 const trackerSeeds = [
   {
+    _id: "65eccc5ffc13ae7885cd36d6",
     resume: {
       sent: true,
       date: new Date("03-01-2024"),
@@ -90,6 +91,7 @@ const trackerSeeds = [
     },
   },
   {
+    _id: "65eccc5ffc13ae7885cd36d8",
     resume: {
       sent: true,
       date: new Date("02-26-2024"),
