@@ -4,7 +4,8 @@ import FileLinkForm from '../components/FileLinkForm'
 const Resume = () => {
     return (
         <section className="page-section bg-stars">
-        <section className="resume-section">
+        <div className="container">
+            <div className="row">
             <div className="resume-column">
                 <h2>Resume Templates:</h2>
                 <ul className="list">
@@ -24,7 +25,8 @@ const Resume = () => {
                     <FileLinkForm/>
                 </ul>
             </div>
-        </section>
+            </div>
+        </div>
         </section>
     );
 };
