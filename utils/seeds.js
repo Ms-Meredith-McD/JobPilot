@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Job, Notes, Tracker, User } = require("../server/Models");
 
+//not using env variable while we are testing in development
 mongoose.connect("mongodb://127.0.0.1:27017/jobpilot", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -117,3 +118,33 @@ const trackerSeeds = [
     },
   },
 ];
+
+
+const seedTheData = async () => {
+    try {
+        await Promise.all([
+            Job.deleteMany({}),
+            Notes.deleteMany({}),
+            Tracker.deleteMany({}),
+            User.deleteMany({}),
+        ]);
+
+        await Job.insertMany(jobSeeds);
+        console.log("Job data seeded");
+
+        await Notes.insertMany(noteSeeds);
+        console.log("Notes data seeded");
+
+        await Tracker.insertMany(trackerSeeds);
+        console.log("Tracker data seeded");
+
+        await User.insertMany(userSeeds);
+        console.log("User data seeded");
+    } catch(err) {
+        console.log("Error seeding data:", err);
+    } finally {
+        mongoose.connection.close()
+    }
+}
+
+seedTheData();
