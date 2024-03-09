@@ -1,4 +1,4 @@
-const Job = require("../Models/Tracker");
+const Job = require("../Models/Job");
 
 
 async function getJobById(id){
