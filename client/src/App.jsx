@@ -7,6 +7,7 @@ import Team from "./pages/Team"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/team" element={<Team />} />

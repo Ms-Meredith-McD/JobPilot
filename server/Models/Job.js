@@ -6,11 +6,11 @@ const jobSchema = new mongoose.Schema({
   website: { type: String },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "User",
   },
   notes: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "notes",
+    ref: "Note",
   },
 });
 

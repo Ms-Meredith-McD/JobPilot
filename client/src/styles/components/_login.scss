@@ -1,0 +1,29 @@
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px
+}
+.form-center{
+    width:400px;
+}
+.form-group{
+    padding-top: 10px
+}
+@media (max-width: 576px) { 
+    .form-center{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+    }
+    .form-group{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .loginForm{
+        padding: 0px;
+    }
+ }
