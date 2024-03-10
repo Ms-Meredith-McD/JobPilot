@@ -17,12 +17,12 @@ const trackerSchema = new mongoose.Schema({
     date: { type: Date },
     email: { type: String }
   },
-  other: {
+  other: [{
     title: { type: String, required: true },
     description: { type: String, required: true },
     completed: { type: Boolean }
 
-  },
+  }],
   notes: {
     notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
   },
