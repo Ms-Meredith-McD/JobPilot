@@ -1,0 +1,16 @@
+.list {
+    list-style: none;
+}
+
+.resume-column:first-child {
+    list-style: none;
+}
+
+.resume-column {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.resume-column:first-child {
+    margin-right: 20px;
+}
