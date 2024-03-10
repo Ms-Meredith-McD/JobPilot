@@ -2,7 +2,7 @@ const User = require("../Models/User");
 const bcrypt = require("bcrypt");
 
 
-async function getUserById(id){
+async function getUserById(id) {
   try {
     return await User.findById(id).populate({
       path: "jobs",
@@ -10,57 +10,66 @@ async function getUserById(id){
         path: "notes"
       }
     });
-  } catch(err){
+  } catch (err) {
     console.log(err.message)
     throw new Error(err)
   }
 }
 
 
-async function createUser(data){
+async function createUser(data) {
   const hash = await bcrypt.hash(data.password, 10)
-  const userData = {...data, password: hash}
+  const userData = { ...data, password: hash }
   try {
     return await User.create(userData);
-  } catch(err){
+  } catch (err) {
     console.log(err.message)
     throw new Error(err)
   }
 }
 
 
-async function updateUserById(id, data){
+async function updateUserById(id, data) {
   try {
     return await User.findByIdAndUpdate(id, data, { new: true });
-  } catch(err){
+  } catch (err) {
+    console.log(err.message)
+    throw new Error(err)
+  }
+}
+
+async function getAllUsers() {
+  try {
+    return await User.find({});
+  } catch (err) {
     console.log(err.message)
     throw new Error(err)
   }
 }
 
 
-async function deleteUserById(id){
+async function deleteUserById(id) {
   try {
     return await User.findByIdAndDelete(id);
-  } catch(err){
+  } catch (err) {
     console.log(err.message)
     throw new Error(err)
   }
 }
 
 
-async function handleLogin(email, pw){
-  let foundUser 
+async function handleLogin(email, pw) {
+  let foundUser
 
   foundUser = await User.findOne({ email: email })
-  if( !foundUser ){
+  if (!foundUser) {
     console.log("couldn't validate email address")
     throw new Error("No user found")
   }
 
   let isVerified = false
   isVerified = await bcrypt.compare(pw, foundUser.password)
-  if( !isVerified ){
+  if (!isVerified) {
     console.log("couldn't validate password")
     throw new Error("Password failed")
   }
@@ -71,6 +80,7 @@ async function handleLogin(email, pw){
 
 
 module.exports = {
+  getAllUsers,
   getUserById,
   createUser,
   updateUserById,
