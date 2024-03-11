@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Job, Notes, Tracker, User } = require("../Models");
+const { Job, Notes, Tracker, User } = require("../models");
 
 //not using env variable while we are testing in development
 mongoose.connect("mongodb://127.0.0.1:27017/jobpilot", {
