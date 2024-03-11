@@ -8,7 +8,7 @@ export default function Login() {
 
   async function submitSignup(e) {
     e.preventDefault();
-    console.log(signupData);
+    console.log("SIGN",signupData);
     try {
       const query = await fetch("/api/user", {
         method: "POST",
@@ -48,9 +48,8 @@ export default function Login() {
         },
       });
       const result = await query.json();
+      console.log(result)
 
-      const token = query.token;
-      console.log("our token:", token);
       if (result.status === "error") {
         setFormMessage("We could not log you in with these credentials.");
       } else {

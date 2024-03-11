@@ -14,9 +14,7 @@ import Cookie from "js-cookie";
 function App() {
   function verifyUser() {
     const cookie = Cookie.get("auth_cookie");
-    console.log(
-      cookie.split("; ").find((row) => row.startsWith("auth_cookie="))
-    );
+    console.log(cookie);
   }
 
   useEffect(() => {
