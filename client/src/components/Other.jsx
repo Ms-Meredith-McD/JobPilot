@@ -43,7 +43,7 @@ export function Other() {
 
                 <Form.Group className="mb-3" controlId="completed">
                     <Form.Control
-                       type="Boolean"
+                        type="Boolean"
                         placeholder="Completed"
                         value={formState.completed}
                         name="completed"
