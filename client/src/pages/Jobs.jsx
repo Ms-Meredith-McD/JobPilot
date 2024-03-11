@@ -3,6 +3,10 @@ import Welcome from "../components/Welcome";
 import Tracker from "../components/Tracker";
 import Modal from "../components/Modal";
 import FormAddJob from "../components/FormAddJob";
+import ResumeSent from "../components/ResumeSent";
+import Interview from "../components/Interview";
+import InterviewThanks from "../components/InterviewThanks";
+import InterviewFollowUp from "../components/InterviewFollowUp";
 import useVerifyUser from "../hooks/useVerifyUser";
 
 // Establsh who is logged in: user:  Context will have username, email, _id
@@ -35,6 +39,15 @@ function Jobs() {
           <Tracker />
           {/* <FormAddJob /> */}
           <Modal />
+
+          <h2>This is the ResumeSent component</h2>
+          <ResumeSent />
+          <h2>This is the Interview component</h2>
+          <Interview />
+          <h2>This is the InterviewThanks component</h2>
+          <InterviewThanks />
+          <h2>This is the InterviewFollowUp</h2>
+          <InterviewFollowUp />
         </div>
       </section>
     </>
