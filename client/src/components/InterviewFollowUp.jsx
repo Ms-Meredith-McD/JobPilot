@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useVerifyUser from "../hooks/useVerifyUser"
 import Form from 'react-bootstrap/Form';
 
-export default function Interview() {
+export default function InterviewFollowUp() {
 const [interviewFollowUpData, setInterviewFollowUpData] = useState({});
 const [formMessage, setFormMessage] = useState("");
 
