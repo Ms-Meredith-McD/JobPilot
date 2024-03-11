@@ -6,7 +6,7 @@ const {
   createJob,
   updateJobById,
   deleteJobById
-} = require("../../Controllers/job.controller.js")
+} = require("../../controller/job.controller.js")
 
 router.get("/", async (req, res) => {
   try {

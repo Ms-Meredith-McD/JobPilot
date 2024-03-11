@@ -20,11 +20,11 @@ function Other() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setUserMessage("submitted");
+        setUserMessage("Submit successful");
 
         try {
-            const query = await fetch("/api/job", {
-                method: "POST",
+            const query = await fetch("/api/other", {
+                method: "PUT",
                 body: JSON.stringify(formState),
                 headers: {
                     "Content-Type": "application/json",
