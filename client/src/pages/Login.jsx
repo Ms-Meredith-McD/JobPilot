@@ -48,9 +48,6 @@ export default function Login() {
         },
       });
       const result = await query.json();
-
-      const token = query.token;
-      console.log("our token:", token);
       if (result.status === "error") {
         setFormMessage("We could not log you in with these credentials.");
       } else {
