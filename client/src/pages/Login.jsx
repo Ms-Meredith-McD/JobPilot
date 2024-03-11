@@ -18,7 +18,7 @@ export default function Login() {
         },
       }).catch((err) => {
         setFormMessage(
-          "We regret that we were unable to sign you up. Please try again."
+          err, "We regret that we were unable to sign you up. Please try again."
         );
       });
 
