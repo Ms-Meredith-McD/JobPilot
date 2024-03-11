@@ -1,33 +1,62 @@
+import useVerifyUser from "../hooks/useVerifyUser";
+import { Link } from "react-router-dom";
 
 function Header() {
-    return (
-      <>
-        <div className="d-flex">
-
-            <nav className="navbar navbar-expand-lg navbar-dark w-100 p-2">
-  <a className="navbar-brand" href="#">JobPilot</a>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
-  <div className="collapse navbar-collapse justify-content-flex-end" id="navbarNav">
-    <ul className="navbar-nav">
-      <li className="nav-item active">
-        <a className="nav-link" href="/jobs">My Jobs</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="/resume">Resumes</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="/login">Signup</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-        </div>
-      </>
-    );
-  }
-  
-
+  const { isLoggedIn, logout } = useVerifyUser();
+  return (
+    <>
+      <div className="d-flex">
+        <nav className="navbar navbar-expand-lg navbar-dark w-100 p-2">
+          <Link className="navbar-brand" to="/">
+            JobPilot
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-flex-end"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <Link className="nav-link" to="/jobs">
+                  My Jobs
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/resume">
+                  Resumes
+                </Link>
+              </li>
+              <li className="nav-item">
+                {isLoggedIn === true ? (
+                  <button
+                    type="button"
+                    className="btn btn-light"
+                    onClick={logout}
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <Link type="button" className="btn btn-light" to="/login">
+                    Login or signup please!
+                  </Link>
+                )}
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </>
+  );
+}
 
 export default Header;
