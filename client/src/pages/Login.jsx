@@ -104,7 +104,7 @@ export default function Login() {
         </div>
       </form>
 
-      <form className="loginForm" onSubmit={submitSignup}>
+      <form className="signUpForm" onSubmit={submitSignup}>
         <div className="form-center">
           <div className="form-group">
             <label htmlFor="username">Name</label>
@@ -143,7 +143,7 @@ export default function Login() {
           </div>
           <div className=" form-check"></div>
           <button type="submit" className="btn btn-primary">
-            Login
+            Create Account
           </button>
         </div>
       </form>
