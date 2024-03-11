@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useVerifyUser from "../hooks/useVerifyUser"
 import Form from 'react-bootstrap/Form';
 
 export default function ResumeSent() {
 const [resumeData, setResumeData] = useState({});
 const [formMessage, setFormMessage] = useState("");
 
+const { isLoggedIn, userData } = useVerifyUser();
+
 async function submitResumeData(e) {
   e.preventDefault();
   console.log(resumeData);
   try {
-    //still needs to be setup using alex's hook
+    //still needs to be setup with Alex's solution to grabbing users id
     const query = await fetch("/api/job/:id", {
       method: "PUT",
       body: JSON.stringify(resumeData),
@@ -41,6 +44,11 @@ function handleResumeChange(e) {
   setFormMessage();
   setResumeData({ ...resumeData, [e.target.name]: e.target.value });
 }
+
+useEffect(() => {
+  userData && setResumeData({ ...resumeData, user: userData._id });
+  console.log(resumeData);
+}, [userData]);
 
   return (
     <>

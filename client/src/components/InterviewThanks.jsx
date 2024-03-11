@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useVerifyUser from "../hooks/useVerifyUser"
 import Form from 'react-bootstrap/Form';
 
 export default function Interview() {
 const [interviewThanksData, setInterviewThanksData] = useState({});
 const [formMessage, setFormMessage] = useState("");
 
+const { isLoggedIn, userData } = useVerifyUser();
+
+
 async function submitInterviewData(e) {
   e.preventDefault();
   console.log(interviewThanksData);
   try {
-    //still needs to be setup using alex's hook
+    //still needs to be setup with Alex's solution to grabbing users id
     const query = await fetch("/api/job/:id", {
       method: "PUT",
       body: JSON.stringify(interviewThanksData),
@@ -42,11 +46,16 @@ function handleInputChange(e) {
   setInterviewThanksData({ ...interviewThanksData, [e.target.name]: e.target.value });
 }
 
+useEffect(() => {
+  userData && setInterviewThanksData({ ...interviewThanksData, user: userData._id });
+  console.log(interviewThanksData);
+}, [userData]);
+
   return (
     <>
     <Form className='resumeForm' onSubmit={submitInterviewData}>
-    <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label="Sent?" style={{color: "black"}} />
+    <Form.Group className="mb-3" id="thankYouCheck">
+        <Form.Check type="checkbox" label="Thank you email Sent?" style={{color: "black"}} />
       </Form.Group>
       
       <Form.Group className="mb-3" controlId="formBasicEmail">

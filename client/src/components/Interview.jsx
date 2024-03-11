@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useVerifyUser from "../hooks/useVerifyUser"
 import Form from 'react-bootstrap/Form';
 
 export default function Interview() {
 const [interviewData, setInterviewData] = useState({});
 const [formMessage, setFormMessage] = useState("");
 
+const { isLoggedIn, userData } = useVerifyUser();
+
+
+
+
 async function submitInterviewData(e) {
   e.preventDefault();
   console.log(interviewData);
   try {
-    //still needs to be setup using alex's hook
+    //still needs to be setup with Alex's solution to grabbing users id
     const query = await fetch("/api/job/:id", {
       method: "PUT",
       body: JSON.stringify(interviewData),
@@ -42,6 +48,12 @@ function handleInterviewChange(e) {
   setInterviewData({ ...interviewData, [e.target.name]: e.target.value });
 }
 
+
+useEffect(() => {
+  userData && setInterviewData({ ...interviewData, user: userData._id });
+  console.log(interviewData);
+}, [userData]);
+
   return (
     <>
     <Form className='resumeForm' onSubmit={submitInterviewData}>
@@ -49,7 +61,7 @@ function handleInterviewChange(e) {
         <Form.Label>Date of your interview</Form.Label>
         <Form.Control
          type="date"
-         placeholder="Date"
+         placeholder="Interview Date"
          name='date'
          aria-describedby='interviewDate'
          value={interviewData?.date || ""}
