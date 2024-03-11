@@ -50,7 +50,7 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const payload = await handleLogin(req.body.email, req.body.password)
-    const token = createToken(payload._id)
+    const token = createToken([payload._id, payload.username])
     res.status(200).cookie("auth_cookie", token).json({ status: "success", payload })
   } catch (err) {
     console.log(err.message)

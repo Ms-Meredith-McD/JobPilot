@@ -26,8 +26,8 @@ function App() {
   return (
     <>
       <div className="page-container">
-        <Header />
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -37,8 +37,8 @@ function App() {
             <Route path="/team" element={<Team />} />
             <Route path="*" element={<Home />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
-        <Footer />
       </div>
     </>
   );

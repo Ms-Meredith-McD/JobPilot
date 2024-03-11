@@ -1,11 +1,15 @@
+import useVerifyUser from "../hooks/useVerifyUser";
+import { Link } from "react-router-dom";
+
 function Header() {
+  const { isLoggedIn, logout } = useVerifyUser();
   return (
     <>
       <div className="d-flex">
         <nav className="navbar navbar-expand-lg navbar-dark w-100 p-2">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             JobPilot
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -23,19 +27,29 @@ function Header() {
           >
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <a className="nav-link" href="/jobs">
+                <Link className="nav-link" to="/jobs">
                   My Jobs
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/resume">
+                <Link className="nav-link" to="/resume">
                   Resumes
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/login">
-                  Signup
-                </a>
+                {isLoggedIn === true ? (
+                  <button
+                    type="button"
+                    className="btn btn-light"
+                    onClick={logout}
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <Link type="button" className="btn btn-light" to="/login">
+                    Login or signup please!
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
