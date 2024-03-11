@@ -1,4 +1,4 @@
-const Note = require("../Models/Notes");
+const Note = require("../models/Notes");
 
 
 async function getNoteById(id){

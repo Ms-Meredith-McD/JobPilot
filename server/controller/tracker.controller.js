@@ -1,4 +1,4 @@
-const Tracker = require("../Models/Tracker");
+const Tracker = require("../models/Tracker");
 
 
 async function getTrackerById(id){

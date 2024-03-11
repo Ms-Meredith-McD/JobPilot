@@ -1,4 +1,4 @@
-const Job = require("../Models/Job");
+const Job = require("../models/Job");
 
 async function getAllJobs() {
   try {
