@@ -74,7 +74,13 @@ async function handleLogin(email, pw) {
     throw new Error("Password failed")
   }
 
-  const { password, ...modifiedUser } = foundUser
+  console.log('foundUser', foundUser)
+  const modifiedUser = {
+    _id: foundUser._id,
+    username: foundUser.username,
+    // Add other fields you need from the foundUser object
+  };
+  console.log('modifiedUser', modifiedUser);
   return modifiedUser
 }
 
