@@ -14,9 +14,9 @@ function Jobs() {
         <div className="container">
           <Welcome />
           <h2 className="mb-4">Choose your mission</h2>
-          <Modal />
           <Tracker />
-          <FormAddJob />
+          {/* <FormAddJob /> */}
+          <Modal />
         </div>
       </section>
     </>

@@ -4,8 +4,10 @@ import Form from "react-bootstrap/Form";
 import useVerifyUser from "../hooks/useVerifyUser";
 
 function FormAddJob() {
+  // Very user is logged in, and get their data
   const { isLoggedIn, userData } = useVerifyUser();
 
+  // Variable of the form data ******
   const initialState = {
     company: "",
     jobTitle: "",
@@ -20,9 +22,10 @@ function FormAddJob() {
   }
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     setUserMessage("Submit successful");
 
+    // Fetch request to server *****
     try {
       const query = await fetch("/api/job", {
         method: "POST",
@@ -48,6 +51,7 @@ function FormAddJob() {
   return (
     <>
       <Form>
+        {/* make sure controlId, name, value are correct; placeholder** */}
         <Form.Group className="mb-3" controlId="company">
           <Form.Control
             type="input"
