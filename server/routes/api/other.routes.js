@@ -2,7 +2,7 @@ const router = require("express").Router()
 
 const {
     updateOtherById,
-} = require("../../controller2/other.controller.js")
+} = require("../../controller/other.controller.js")
 
 
 router.put("/:id", async (req, res) => {

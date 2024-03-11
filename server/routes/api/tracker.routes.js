@@ -5,7 +5,7 @@ const {
   createTracker,
   updateTrackerById,
   deleteTrackerById
-} = require("../../Controllers/tracker.controller")
+} = require("../../controller/tracker.controller")
 
 
 router.get("/:id", async (req, res) => {
