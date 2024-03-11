@@ -37,9 +37,8 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    console.log('hello')
     const payload = await createUser(req.body)
-    const token = createToken([payload._id, payload.username])
+    const token = createToken({ _id: payload._id, username: payload.username })
     console.log(token)
     res.status(200).cookie("auth_cookie", token).json({ status: "success", payload })
   } catch (err) {
@@ -51,7 +50,7 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const payload = await handleLogin(req.body.email, req.body.password)
-    const token = createToken(payload._id)
+    const token = createToken({ _id: payload._id, username: payload.username })
     res.status(200).cookie("auth_cookie", token).json({ status: "success", payload })
   } catch (err) {
     console.log(err.message)

@@ -24,6 +24,22 @@ const jobSeeds = [
     user: "65eccc5ffc13ae7885cd36a6",
     notes: "65eccc5ffc13ae7885cd36c3",
   },
+  {
+    _id: "65eccc5ffc13ae7885cd368d",
+    company: "PetsRUs",
+    jobTitle: "Nail trimming assistant",
+    website: "https://www.petsrus.org",
+    user: "65eccc5ffc13ae7885cd36a6",
+    notes: "65eccc5ffc13ae7885cd36c3",
+  },
+  {
+    _id: "65eccc5ffc13ae7885cd368d",
+    company: "Ipsum",
+    jobTitle: "Ipsum Employee",
+    website: "https://www.ipsum.com",
+    user: "65eccc5ffc13ae7885cd36a6",
+    notes: "65eccc5ffc13ae7885cd36c3",
+  },
 ];
 
 const userSeeds = [
@@ -123,30 +139,30 @@ const trackerSeeds = [
 
 
 const seedTheData = async () => {
-    try {
-        await Promise.all([
-            Job.deleteMany({}),
-            Notes.deleteMany({}),
-            Tracker.deleteMany({}),
-            User.deleteMany({}),
-        ]);
+  try {
+    await Promise.all([
+      Job.deleteMany({}),
+      Notes.deleteMany({}),
+      Tracker.deleteMany({}),
+      User.deleteMany({}),
+    ]);
 
-        await Job.insertMany(jobSeeds);
-        console.log("Job data seeded");
+    await Job.insertMany(jobSeeds);
+    console.log("Job data seeded");
 
-        await Notes.insertMany(noteSeeds);
-        console.log("Notes data seeded");
+    await Notes.insertMany(noteSeeds);
+    console.log("Notes data seeded");
 
-        await Tracker.insertMany(trackerSeeds);
-        console.log("Tracker data seeded");
+    await Tracker.insertMany(trackerSeeds);
+    console.log("Tracker data seeded");
 
-        await User.insertMany(userSeeds);
-        console.log("User data seeded");
-    } catch(err) {
-        console.log("Error seeding data:", err);
-    } finally {
-        mongoose.connection.close()
-    }
+    await User.insertMany(userSeeds);
+    console.log("User data seeded");
+  } catch (err) {
+    console.log("Error seeding data:", err);
+  } finally {
+    mongoose.connection.close()
+  }
 }
 
 seedTheData();
