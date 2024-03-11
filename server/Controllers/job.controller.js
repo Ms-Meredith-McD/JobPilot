@@ -8,6 +8,7 @@ async function getAllJobs() {
     throw new Error(err)
   }
 }
+
 async function getJobById(id) {
   try {
     return await Job.findById(id).populate('notes');
@@ -17,6 +18,16 @@ async function getJobById(id) {
   }
 }
 
+async function getJobs(id) {
+  try {
+    const jobs = await Job.find({ user: id })
+    console.log(jobs);
+    return jobs;
+  } catch (err) {
+    console.log(err.message)
+    throw new Error(err)
+  }
+}
 
 async function createJob(data) {
   try {
@@ -51,6 +62,7 @@ async function deleteJobById(id) {
 module.exports = {
   getAllJobs,
   getJobById,
+  getJobs,
   createJob,
   updateJobById,
   deleteJobById

@@ -3,10 +3,12 @@ const router = require("express").Router()
 const {
   getAllJobs,
   getJobById,
+  getJobs,
   createJob,
   updateJobById,
   deleteJobById
 } = require("../../Controllers/job.controller.js")
+const { find } = require("../../Models/Tracker.js")
 
 router.get("/", async (req, res) => {
   try {
@@ -21,6 +23,17 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const payload = await getJobById(req.params.id)
+    res.status(200).json({ status: "success", payload })
+  } catch (err) {
+    console.log(err.message)
+    res.status(500).json({ status: "error", payload: err.message })
+  }
+})
+
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const payload = await getJobs(req.params.userId);
+    console.log(req.params.userId);
     res.status(200).json({ status: "success", payload })
   } catch (err) {
     console.log(err.message)
