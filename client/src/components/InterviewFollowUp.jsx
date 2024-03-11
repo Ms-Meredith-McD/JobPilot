@@ -3,7 +3,7 @@ import useVerifyUser from "../hooks/useVerifyUser"
 import Form from 'react-bootstrap/Form';
 
 export default function Interview() {
-const [interviewThanksData, setInterviewThanksData] = useState({});
+const [interviewFollowUpData, setInterviewFollowUpData] = useState({});
 const [formMessage, setFormMessage] = useState("");
 
 const { isLoggedIn, userData } = useVerifyUser();
@@ -11,12 +11,12 @@ const { isLoggedIn, userData } = useVerifyUser();
 
 async function submitInterviewData(e) {
   e.preventDefault();
-  console.log(interviewThanksData);
+  console.log(interviewFollowUpData);
   try {
     //still needs to be setup with Alex's solution to grabbing users id
     const query = await fetch("/api/job/:id", {
       method: "PUT",
-      body: JSON.stringify(interviewThanksData),
+      body: JSON.stringify(interviewFollowUpData),
       headers: {
         "Content-Type": "application/json",
       },
@@ -43,12 +43,12 @@ async function submitInterviewData(e) {
 
 function handleInputChange(e) {
   setFormMessage();
-  setInterviewThanksData({ ...interviewThanksData, [e.target.name]: e.target.value });
+  setInterviewFollowUpData({ ...interviewFollowUpData, [e.target.name]: e.target.value });
 }
 
 useEffect(() => {
-  userData && setInterviewThanksData({ ...interviewThanksData, user: userData._id });
-  console.log(interviewThanksData);
+  userData && setInterviewFollowUpData({ ...interviewFollowUpData, user: userData._id });
+  console.log(interviewFollowUpData);
 }, [userData]);
 
   return (
@@ -57,9 +57,20 @@ useEffect(() => {
     <Form.Group className="mb-3" id="thankYouCheck">
         <Form.Check
          type="checkbox"
-         label="Thank you email Sent?" 
-         style={{color: "black"}} 
-         value={interviewThanksData?.sent || ""}/>
+         label="Thank you email Sent?"
+         style={{color: "black"}}
+         value={interviewFollowUpData?.sent || ""} />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="date">
+        <Form.Label>Date of your interview</Form.Label>
+        <Form.Control
+         type="date"
+         placeholder="Interview Date"
+         name='date'
+         aria-describedby='interviewDate'
+         value={interviewFollowUpData?.date || ""}
+         onChange={handleInputChange} />
       </Form.Group>
       
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -69,7 +80,7 @@ useEffect(() => {
          placeholder="Email of recipient"
          name='date'
          aria-describedby='thankYouEmail'
-         value={interviewThanksData?.date || ""}
+         value={interviewFollowUpData?.date || ""}
          onChange={handleInputChange} />
       </Form.Group>
     </Form>
