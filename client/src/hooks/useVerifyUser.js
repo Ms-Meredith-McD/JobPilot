@@ -9,15 +9,11 @@ export default function useVerifyUser() {
 
   function verifyUser() {
     const cookie = Cookie.get("auth_cookie");
-    console.log('got cookie:', cookie);
     if (cookie && cookie.length) {
-      console.log('before decode', cookie);
       const decodedToken = jwtDecode(cookie);
-      console.log('decodedToken', decodedToken);
       setIsLoggedIn(true);
       setUserData(decodedToken.id);
     } else {
-      console.log('else')
       setIsLoggedIn(false);
       setUserData(null);
     }

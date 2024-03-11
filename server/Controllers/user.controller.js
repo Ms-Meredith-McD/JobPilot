@@ -61,7 +61,7 @@ async function deleteUserById(id) {
 async function handleLogin(email, pw) {
   let foundUser
 
-  foundUser = await User.findOne({ email: email })
+  foundUser = await User.findOne({ email: email }).lean()
   if (!foundUser) {
     console.log("couldn't validate email address")
     throw new Error("No user found")
@@ -73,14 +73,9 @@ async function handleLogin(email, pw) {
     console.log("couldn't validate password")
     throw new Error("Password failed")
   }
-
-  console.log('foundUser', foundUser)
-  const modifiedUser = {
-    _id: foundUser._id,
-    username: foundUser.username,
-    // Add other fields you need from the foundUser object
-  };
-  console.log('modifiedUser', modifiedUser);
+  console.log('foundUser: ', foundUser)
+  const { password, ...modifiedUser } = foundUser;
+  console.log('modifiedUser: ', modifiedUser);
   return modifiedUser
 }
 
