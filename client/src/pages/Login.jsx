@@ -54,7 +54,7 @@ export default function Login() {
       if (result.status === "error") {
         setFormMessage("We could not log you in with these credentials.");
       } else {
-        // window.location.href = "/";
+        window.location.href = "/jobs";
       }
     } catch (err) {
       setFormMessage("We could not log you in with these credentials.");
