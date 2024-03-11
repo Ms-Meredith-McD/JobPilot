@@ -9,7 +9,7 @@ const {
   updateUserById,
   deleteUserById,
   handleLogin
-} = require("../../controllers/user.controller")
+} = require("../../controller2/user.controller")
 
 // tokens are encrypted non-invasive data about the user 
 function createToken(id) {
