@@ -2,16 +2,17 @@ import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function Other() {
+export default function  Other() {
+
+    function otherData () {
     // Grouping state as an object
 
-    const initialState = {
+    const [formState, setFormState] = useState("");({
         title: "",
         description: "",
         boolean: false,
-    };
+    });
 
-    const [formState, setFormState] = useState(initialState);
     const [userMessage, setUserMessage] = useState("");
 
     function handleInputChange(e) {
@@ -88,5 +89,6 @@ function Other() {
         </>
 
     );
+    }
 }
-export default Other;
+
