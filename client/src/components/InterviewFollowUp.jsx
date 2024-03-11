@@ -58,7 +58,7 @@ useEffect(() => {
         <Form.Check
          type="checkbox"
          label="Thank you email Sent?"
-         style={{color: "black"}}
+         style={{color: "white"}}
          value={interviewFollowUpData?.sent || ""} />
       </Form.Group>
 
