@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -10,8 +10,10 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Signup from "./pages/Signup";
 import Cookie from "js-cookie";
+import useVerifyUser from "./hooks/useVerifyUser";
 
 function App() {
+  const { isLoggedIn, userData } = useVerifyUser();
   function verifyUser() {
     const cookie = Cookie.get("auth_cookie");
     console.log(cookie);
@@ -31,7 +33,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/resume" element={<Resume />} />
-            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/jobs" element={isLoggedIn ? <Jobs /> : <Home />} />
             <Route path="/team" element={<Team />} />
             <Route path="*" element={<Home />} />
           </Routes>
