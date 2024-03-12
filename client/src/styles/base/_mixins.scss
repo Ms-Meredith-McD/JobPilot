@@ -1,0 +1,39 @@
+@use "./variables" as v;
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == bp-sm {
+    @media only screen and (min-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == bp-md {
+    @media only screen and (min-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == bp-lg {
+    @media only screen and (min-width: 62.5em) {
+      @content;
+    } //1000px
+  }
+  @if $breakpoint == bp-xl {
+    @media only screen and (min-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == bp-xxl {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
+
+// @mixin padVertMd {
+//   padding-top: 8%;
+//   padding-bottom: 8%;
+// }
+
+// @mixin padVertLg {
+//   padding-top: 10%;
+//   padding-bottom: 10%;
+// }

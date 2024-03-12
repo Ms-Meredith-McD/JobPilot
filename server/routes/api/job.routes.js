@@ -3,6 +3,7 @@ const router = require("express").Router()
 const {
   getAllJobs,
   getJobById,
+  getJobs,
   createJob,
   updateJobById,
   deleteJobById
@@ -28,8 +29,20 @@ router.get("/:id", async (req, res) => {
   }
 })
 
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const payload = await getJobs(req.params.userId);
+    console.log(req.params.userId);
+    res.status(200).json({ status: "success", payload })
+  } catch (err) {
+    console.log(err.message)
+    res.status(500).json({ status: "error", payload: err.message })
+  }
+})
+
 router.post("/", async (req, res) => {
   try {
+    console.log('req.body', req.body)
     const payload = await createJob(req.body)
     res.status(200).json({ status: "success", payload })
   } catch (err) {

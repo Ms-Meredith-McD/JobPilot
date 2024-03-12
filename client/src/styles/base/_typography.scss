@@ -1,0 +1,90 @@
+@use "./variables" as v;
+@use "./mixins" as m;
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.6;
+  text-align: center;
+
+  @include m.respond(bp-sm) {
+    text-align: left;
+  }
+}
+
+body {
+  font-family: v.$font-primary;
+  font-size: v.$default-font-size;
+  color: v.$font-light;
+  font-weight: 400;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  text-align: center;
+
+  @include m.respond(bp-sm) {
+    text-align: left;
+    font-size: 5rem;
+    letter-spacing: 1.5px;
+  }
+
+  @include m.respond(bp-lg) {
+    font-size: 5rem;
+    letter-spacing: 1.5px;
+  }
+
+  @include m.respond(bp-sm) {
+    font-size: 6rem;
+    letter-spacing: 1.2px;
+  }
+}
+
+h2 {
+  font-size: 3.2rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  @include m.respond(bp-lg) {
+    font-size: 4.2rem;
+  }
+
+  @include m.respond(bp-sm) {
+    font-size: 5rem;
+  }
+}
+
+h3 {
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 1px;
+
+  @include m.respond(bp-lg) {
+    font-size: 3.4rem;
+    line-height: 1.5;
+  }
+}
+
+p {
+  font-size: 2.5rem;
+
+  @include m.respond(bp-lg) {
+    font-size: 2.8rem;
+  }
+}
+
+.error-msg {
+  color: v.$color-red;
+}

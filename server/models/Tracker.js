@@ -17,18 +17,18 @@ const trackerSchema = new mongoose.Schema({
     date: { type: Date },
     email: { type: String }
   },
-  other: {
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    completed: { type: Boolean }
+  // other: {
+  //   title: { type: String, required: true },
+  //   description: { type: String, required: true },
+  //   completed: { type: Boolean }
 
-  },
-  notes: {
-    notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
-  },
-  job: {
-    job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' },
-  }
+  // },
+  // notes: {
+  //   notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
+  // },
+
+  job: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }],
+
 
 });
 

@@ -1,13 +1,41 @@
-function Tracker() {
+import React from "react";
+import FormModal from "../components/Modal";
+import ResumeSent from "../components/ResumeSent";
+import Interview from "../components/Interview";
+import InterviewThanks from "../components/InterviewThanks";
+import InterviewFollowUp from "../components/InterviewFollowUp";
+import { Link } from "react-router-dom";
+
+function Tracker({ job }) {
+  const { _id, company, website, jobTitle } = job;
+
+  // Define an array of components
+  const components = [
+    ResumeSent,
+    Interview,
+    InterviewThanks,
+    InterviewFollowUp,
+  ];
+
   return (
     <>
-      <div className="d-flex justify-content-end tracker">
-        <h3 className="tracker__title">Company</h3>
-        <h4 className="tracker__title">Job Title</h4>
-        <h4 className="tracker__website">www.site.com</h4>
-        <h4 className="tracker__notes">Notes</h4>
-      </div>
-      <div className="row"></div>
+      <section className="tracker">
+        <h3 className="tracker__title">{company}</h3>
+        <div className="tracker__row tracker__row--end">
+          <h4 className="tracker__title">{jobTitle}</h4>
+          <Link className="tracker__joblink" to={website}>
+            <h4 className="tracker__website">{website}</h4>
+          </Link>
+          <h4 className="tracker__notes">Notes</h4>
+        </div>
+        <div className="tracker__row">
+          {components.map((Component, index) => (
+            <div className="tracker__button" key={index}>
+              <Component />
+            </div>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

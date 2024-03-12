@@ -1,4 +1,4 @@
-const Job = require("../models/Job");
+const { Job, Tracker, User } = require("../models");
 
 async function getAllJobs() {
   try {
@@ -8,6 +8,7 @@ async function getAllJobs() {
     throw new Error(err)
   }
 }
+
 async function getJobById(id) {
   try {
     return await Job.findById(id).populate('notes');
@@ -17,10 +18,23 @@ async function getJobById(id) {
   }
 }
 
+async function getJobs(id) {
+  try {
+    const jobs = await Job.find({ user: id }).lean();
+    return jobs;
+  } catch (err) {
+    console.log(err.message)
+    throw new Error(err)
+  }
+}
 
 async function createJob(data) {
   try {
-    return await Job.create(data);
+    const newJob = await Job.create(data)
+    const newTracker = await Tracker.create({ job: newJob._id })
+    await User.findByIdAndUpdate(data.user, { $push: { jobs: newJob._id } });
+    return { newJob, newTracker }
+    // return await Job.create(data);
   } catch (err) {
     console.log(err.message)
     throw new Error(err)
@@ -51,6 +65,7 @@ async function deleteJobById(id) {
 module.exports = {
   getAllJobs,
   getJobById,
+  getJobs,
   createJob,
   updateJobById,
   deleteJobById
