@@ -7,7 +7,10 @@ const trackerSchema = new mongoose.Schema({
     link: { type: String }
   },
   interviewDate: { type: String },
-  interviewThankYou: { type: String },
+  interviewThankYou: {
+    email: { type: String },
+    date: { type: String }
+  },
   interviewFollowUp: {
     date: { type: String },
     email: { type: String }

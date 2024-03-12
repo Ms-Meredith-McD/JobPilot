@@ -5,9 +5,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function InterviewThanks(props) {
+  const { interviewThankYou } = props.trackerdata;
+
   const [interviewThanksData, setInterviewThanksData] = useState({});
   const [formMessage, setFormMessage] = useState("");
   const [show, setShow] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -20,7 +23,12 @@ export default function InterviewThanks(props) {
       //still needs to be setup with Alex's solution to grabbing users id
       const query = await fetch(`/api/tracker/${props.tracker}`, {
         method: "PUT",
-        body: JSON.stringify({ interviewThankYou: interviewThanksData.email }),
+        body: JSON.stringify({
+          interviewThankYou: {
+            date: interviewThanksData.date,
+            email: interviewThanksData.email,
+          },
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -35,7 +43,7 @@ export default function InterviewThanks(props) {
       if (result.status === "error") {
         setFormMessage("There was an issue submitting your interview data.");
       } else {
-        // window.location.href = "/";
+        setSubmitted(true);
       }
     } catch (err) {
       setFormMessage(
@@ -54,18 +62,41 @@ export default function InterviewThanks(props) {
   }
 
   useEffect(() => {
-    userData &&
-      setInterviewThanksData({ ...interviewThanksData, user: userData._id });
-  }, [userData]);
+    if (userData && interviewThankYou) {
+      setInterviewThanksData({
+        date: interviewThankYou.date,
+        email: interviewThankYou.email,
+        user: userData._id,
+      });
+      setSubmitted(true);
+    } else {
+      setSubmitted(false);
+    }
+  }, [userData, interviewThankYou]);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button
+        className={submitted ? "green" : ""}
+        variant="primary"
+        onClick={handleShow}
+      >
         Interview Thanks
       </Button>
 
       <Modal {...props} size="lg" centered show={show} onHide={handleClose}>
         <Form className="resumeForm">
+          <Form.Group className="mb-3" controlId="date">
+            <Form.Label>Sent date</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="Date"
+              name="date"
+              aria-describedby="thankYouDate"
+              value={interviewThanksData.date}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
@@ -73,7 +104,7 @@ export default function InterviewThanks(props) {
               placeholder="Email of recipient"
               name="email"
               aria-describedby="thankYouEmail"
-              value={interviewThanksData?.email || ""}
+              value={interviewThanksData.email}
               onChange={handleInputChange}
             />
           </Form.Group>
