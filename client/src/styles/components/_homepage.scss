@@ -1,34 +1,39 @@
-.homePage {
-  margin: 60px;
+.homePage{
+    margin: 60px;
+}
+.homePage h2{
+    margin-bottom: 60px;
 }
 .hero {
-  height: 365px;
-  width: 100%;
-  margin-top: 60px;
-  margin-bottom: 60px;
-  background-size: cover;
-  background-position: center;
-  border: 10px solid #333; /* Darker border color */
-  border-radius: 20px; /* Reduced border-radius for a smoother look */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        height: 365px;
+        width: 100%;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        background-size: cover;
+        background-position: center;
+        border: 10px solid #333; /* Darker border color */
+        border-radius: 20px; /* Reduced border-radius for a smoother look */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    
+
 }
 @media screen and (min-width: 1400px) {
-  .hero {
-    height: 500px;
-  }
+    .hero {
+        height: 500px;
+    }
 }
 @media screen and (max-width: 968px) {
-  .hero {
-    height: 250px;
-  }
+    .hero {
+        height: 250px;
+    }
 }
 @media screen and (max-width: 600px) {
-  .hero {
-    height: 200px;
-  }
+    .hero {
+        height: 200px;
+    }
 }
 @media screen and (max-width: 450px) {
-  .hero {
-    display: none;
-  }
+    .hero {
+        display: none;
+    }
 }
