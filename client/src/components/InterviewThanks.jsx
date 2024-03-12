@@ -2,10 +2,15 @@ import { useState, useEffect } from "react";
 import useVerifyUser from "../hooks/useVerifyUser";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
-export default function Interview() {
+export default function InterviewThanks(props) {
   const [interviewThanksData, setInterviewThanksData] = useState({});
   const [formMessage, setFormMessage] = useState("");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const { isLoggedIn, userData } = useVerifyUser();
 
@@ -56,37 +61,43 @@ export default function Interview() {
 
   return (
     <>
-      <Form className="resumeForm">
-        <Form.Group className="mb-3" id="thankYouCheck">
-          <Form.Check
-            type="checkbox"
-            label="Thank you email Sent?"
-            style={{ color: "white" }}
-            value={interviewThanksData?.sent || ""}
-          />
-        </Form.Group>
+      <Button variant="primary" onClick={handleShow}>
+        Interview Thanks
+      </Button>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Email of recipient"
-            name="date"
-            aria-describedby="thankYouEmail"
-            value={interviewThanksData?.date || ""}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={submitInterviewData}>
-          Submit
-        </Button>
-      </Form>
+      <Modal {...props} size="lg" centered show={show} onHide={handleClose}>
+        <Form className="resumeForm">
+          <Form.Group className="mb-3" id="thankYouCheck">
+            <Form.Check
+              type="checkbox"
+              label="Thank you email Sent?"
+              style={{ color: "white" }}
+              value={interviewThanksData?.sent || ""}
+            />
+          </Form.Group>
 
-      {formMessage && formMessage.length > 0 && (
-        <div className="row">
-          <div className="col-12">{formMessage}</div>
-        </div>
-      )}
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Email of recipient"
+              name="date"
+              aria-describedby="thankYouEmail"
+              value={interviewThanksData?.date || ""}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit" onClick={submitInterviewData}>
+            Submit
+          </Button>
+        </Form>
+
+        {formMessage && formMessage.length > 0 && (
+          <div className="row">
+            <div className="col-12">{formMessage}</div>
+          </div>
+        )}
+      </Modal>
     </>
   );
 }

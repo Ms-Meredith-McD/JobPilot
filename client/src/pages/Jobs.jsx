@@ -30,13 +30,11 @@ function Jobs() {
   }, [userData]);
   return (
     <>
-      <section className="page-section bg-stars">
-        <div className="container">
+      <section className="jobs page-section bg-stars">
+        <div className="jobs__container container">
           <Welcome />
           <h2 className="mb-4">Choose your mission</h2>
-          <FormModal>
-            <FormAddJob />
-          </FormModal>
+          <FormAddJob />
 
           {userJobs.map((job) => (
             <Tracker key={job._id} job={job} />

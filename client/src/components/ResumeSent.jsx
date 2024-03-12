@@ -2,10 +2,15 @@ import { useState, useEffect } from "react";
 import useVerifyUser from "../hooks/useVerifyUser";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
-export default function ResumeSent() {
+export default function ResumeSent(props) {
   const [resumeData, setResumeData] = useState({});
   const [formMessage, setFormMessage] = useState("");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const { isLoggedIn, userData } = useVerifyUser();
 
@@ -49,39 +54,45 @@ export default function ResumeSent() {
 
   return (
     <>
-      <Form className="resumeForm">
-        <Form.Group className="mb-3" controlId="date">
-          <Form.Label>Sent date</Form.Label>
-          <Form.Control
-            type="date"
-            placeholder="Date"
-            name="date"
-            aria-describedby="resumeSentDate"
-            value={resumeData?.date || ""}
-            onChange={handleResumeChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="link">
-          <Form.Label>Link</Form.Label>
-          <Form.Control
-            type="link"
-            placeholder="Link"
-            name="link"
-            aria-describedby="resumeLink"
-            value={resumeData?.link || ""}
-            onChange={handleResumeChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={submitResumeData}>
-          Submit
-        </Button>
-      </Form>
+      <Button variant="primary" onClick={handleShow}>
+        Resume Sent
+      </Button>
 
-      {formMessage && formMessage.length > 0 && (
-        <div className="row">
-          <div className="col-12">{formMessage}</div>
-        </div>
-      )}
+      <Modal {...props} size="lg" centered show={show} onHide={handleClose}>
+        <Form className="resumeForm">
+          <Form.Group className="mb-3" controlId="date">
+            <Form.Label>Sent date</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="Date"
+              name="date"
+              aria-describedby="resumeSentDate"
+              value={resumeData?.date || ""}
+              onChange={handleResumeChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="link">
+            <Form.Label>Link</Form.Label>
+            <Form.Control
+              type="link"
+              placeholder="Link"
+              name="link"
+              aria-describedby="resumeLink"
+              value={resumeData?.link || ""}
+              onChange={handleResumeChange}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit" onClick={submitResumeData}>
+            Submit
+          </Button>
+        </Form>
+
+        {formMessage && formMessage.length > 0 && (
+          <div className="row">
+            <div className="col-12">{formMessage}</div>
+          </div>
+        )}
+      </Modal>
     </>
   );
 }

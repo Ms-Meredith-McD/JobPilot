@@ -1,0 +1,21 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+form {
+  background-color: v.$color-white;
+  display: grid;
+  color: v.$color-grey-dark;
+  padding: 2rem;
+
+  & label {
+    color: v.$color-grey-dark;
+  }
+
+  & input {
+    height: 5rem;
+  }
+
+  & button {
+    background-color: v.$color-grey-dark;
+  }
+}

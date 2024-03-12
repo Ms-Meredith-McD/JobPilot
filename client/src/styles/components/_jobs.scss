@@ -1,0 +1,13 @@
+@use "../base/mixins" as m;
+
+.jobs {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include m.respond(bp-sm) {
+      align-items: start;
+    }
+  }
+}

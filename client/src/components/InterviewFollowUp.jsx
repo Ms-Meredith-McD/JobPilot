@@ -2,10 +2,15 @@ import { useState, useEffect } from "react";
 import useVerifyUser from "../hooks/useVerifyUser";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
-export default function InterviewFollowUp() {
+export default function InterviewFollowUp(props) {
   const [interviewFollowUpData, setInterviewFollowUpData] = useState({});
   const [formMessage, setFormMessage] = useState("");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const { isLoggedIn, userData } = useVerifyUser();
 
@@ -59,49 +64,55 @@ export default function InterviewFollowUp() {
 
   return (
     <>
-      <Form className="resumeForm">
-        <Form.Group className="mb-3" id="thankYouCheck">
-          <Form.Check
-            type="checkbox"
-            label="Thank you email Sent?"
-            style={{ color: "white" }}
-            value={interviewFollowUpData?.sent || ""}
-          />
-        </Form.Group>
+      <Button variant="primary" onClick={handleShow}>
+        Interview Follow-Up
+      </Button>
 
-        <Form.Group className="mb-3" controlId="date">
-          <Form.Label>Date of your interview</Form.Label>
-          <Form.Control
-            type="date"
-            placeholder="Interview Date"
-            name="date"
-            aria-describedby="interviewDate"
-            value={interviewFollowUpData?.date || ""}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
+      <Modal {...props} size="lg" centered show={show} onHide={handleClose}>
+        <Form className="resumeForm">
+          <Form.Group className="mb-3" id="thankYouCheck">
+            <Form.Check
+              type="checkbox"
+              label="Thank you email Sent?"
+              style={{ color: "white" }}
+              value={interviewFollowUpData?.sent || ""}
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Email of recipient"
-            name="email"
-            aria-describedby="thankYouEmail"
-            value={interviewFollowUpData?.email || ""}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={submitInterviewData}>
-          Submit
-        </Button>
-      </Form>
+          <Form.Group className="mb-3" controlId="date">
+            <Form.Label>Date of your interview</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="Interview Date"
+              name="date"
+              aria-describedby="interviewDate"
+              value={interviewFollowUpData?.date || ""}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
 
-      {formMessage && formMessage.length > 0 && (
-        <div className="row">
-          <div className="col-12">{formMessage}</div>
-        </div>
-      )}
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Email of recipient"
+              name="email"
+              aria-describedby="thankYouEmail"
+              value={interviewFollowUpData?.email || ""}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit" onClick={submitInterviewData}>
+            Submit
+          </Button>
+        </Form>
+
+        {formMessage && formMessage.length > 0 && (
+          <div className="row">
+            <div className="col-12">{formMessage}</div>
+          </div>
+        )}
+      </Modal>
     </>
   );
 }

@@ -1,0 +1,54 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.tracker {
+  display: grid;
+  gap: 1.5rem;
+  margin: 6.5rem 0;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+    @include m.respond(bp-sm) {
+      display: flex;
+      justify-content: start;
+      margin: 0;
+    }
+
+    &--end {
+      grid-template-columns: 1fr 1fr 1fr;
+      @include m.respond(bp-sm) {
+        display: grid;
+        grid-template-columns: 1fr min-content min-content;
+      }
+    }
+  }
+
+  &__title {
+    @include m.respond(bp-sm) {
+      justify-self: start;
+    }
+  }
+
+  &__button > button {
+    height: 10rem;
+    color: #2d2d2d;
+    background-color: v.$color-white;
+    border: none;
+    width: 10rem;
+    font-size: 1.6rem;
+
+    @include m.respond(bp-lg) {
+      width: 10rem;
+      height: 10rem;
+    }
+
+    &:hover {
+      background-color: v.$color-grey-medium;
+    }
+  }
+}
