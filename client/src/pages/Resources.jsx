@@ -1,5 +1,5 @@
 import '../styles/components/_resources.scss';
-import FileLinkForm from '../components/FileLinkForm'
+
 
 const Resume = () => {
     return (
