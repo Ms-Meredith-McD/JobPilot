@@ -2,5 +2,10 @@ import Modal from "./Modal";
 import FormAddJob from "./FormAddJob";
 
 function Task(props) {
-  return <></>;
+  const form = "FormAddJob";
+  return (
+    <>
+      <Modal form={form} />
+    </>
+  );
 }
