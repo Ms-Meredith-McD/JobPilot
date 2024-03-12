@@ -1,15 +1,44 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+header {
+  background-color: v.$color-black;
+}
+.header__title {
+  font-size: 3rem;
+  color: v.$color-white;
+}
+
 .navbar {
-    background-color: #1c2128;
+  padding: 1rem 2rem;
+  height: 100%;
+  background-color: #1c2128;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+.navbar-toggler {
+  color: v.$color-white;
+  background: v.$color-grey-light;
+}
+
+.navbar-nav {
+  align-items: end;
 }
 
 .nav-link {
-    color: white;
+  color: v.$color-white;
 }
 
 footer {
-    background-color: #1c2128;
+  background-color: #1c2128;
 }
 
-footer, .mb-3 {
-    color: white;
+footer,
+.mb-3 {
+  color: v.$color-white;
 }
