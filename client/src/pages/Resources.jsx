@@ -81,11 +81,11 @@ const Resources = () => {
                             <li><Link to="https://www.indeed.com/" target="_blank" rel="noopener noreferrer">Indeed</Link></li>
                             <li><Link to="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</Link></li>
                             <li><Link to="https://www.dice.com" target="_blank" rel="noopener noreferrer">Tech Jobs: Dice</Link></li>
-                            <li><Link to="https:/www.ziprecruiter.com" target="_blank" rel="noopener noreferrer">Zip Recruiter</Link></li>
-                            <li><Link to="https:/www.glassdoor.com" target="_blank" rel="noopener noreferrer">Jobs & Reviews: Glassdoor</Link></li>
-                            <li><Link to="https:/www.monster.com" target="_blank" rel="noopener noreferrer">Monster</Link></li>
-                            <li><Link to="https:/www.careerbuilder.com" target="_blank" rel="noopener noreferrer">Career Builder</Link></li>
-                            <li><Link to="https:/www.simplyhired.com" target="_blank" rel="noopener noreferrer">SimplyHired</Link></li>
+                            <li><Link to="https://www.ziprecruiter.com" target="_blank" rel="noopener noreferrer">Zip Recruiter</Link></li>
+                            <li><Link to="https://www.glassdoor.com" target="_blank" rel="noopener noreferrer">Jobs & Reviews: Glassdoor</Link></li>
+                            <li><Link to="https://www.monster.com" target="_blank" rel="noopener noreferrer">Monster</Link></li>
+                            <li><Link to="https://www.careerbuilder.com" target="_blank" rel="noopener noreferrer">Career Builder</Link></li>
+                            <li><Link to="https://www.simplyhired.com" target="_blank" rel="noopener noreferrer">SimplyHired</Link></li>
                         </ul>
                     </div>
                     <div className="resume-column">
@@ -94,18 +94,18 @@ const Resources = () => {
                             <li><Link to="https://www.roberthalf.com/" target="_blank" rel="noopener noreferrer">Robert Half</Link></li>
                             <li><Link to="https://www.aerotek.com" target="_blank" rel="noopener noreferrer">Aerotek</Link></li>
                             <li><Link to="https://www.adecco.com" target="_blank" rel="noopener noreferrer">Adecco</Link></li>
-                            <li><Link to="https:/www.kellyservices.com" target="_blank" rel="noopener noreferrer">Kelly Services</Link></li>
-                            <li><Link to="https:/www.kforce.com" target="_blank" rel="noopener noreferrer">Kforce</Link></li>
-                            <li><Link to="https:/www.TEKsystems" target="_blank" rel="noopener noreferrer">TEKsystems</Link></li>
-                            <li><Link to="https:/www.randstad.com" target="_blank" rel="noopener noreferrer">Randstad</Link></li>
+                            <li><Link to="https://www.kellyservices.com" target="_blank" rel="noopener noreferrer">Kelly Services</Link></li>
+                            <li><Link to="https://www.kforce.com" target="_blank" rel="noopener noreferrer">Kforce</Link></li>
+                            <li><Link to="https://www.TEKsystems" target="_blank" rel="noopener noreferrer">TEKsystems</Link></li>
+                            <li><Link to="https://www.randstad.com" target="_blank" rel="noopener noreferrer">Randstad</Link></li>
                         </ul>
                     </div>
                     <div className="resume-column">
                         <h2>Freelance:</h2>
                         <ul className="list">
-                            <li><Link to="https:/www.upwork.com" target="_blank" rel="noopener noreferrer">Upwork</Link></li>
-                            <li><Link to="https:/www.freelancer.com" target="_blank" rel="noopener noreferrer">Freelancer</Link></li>
-                            <li><Link to="https:/www.toptal.com" target="_blank" rel="noopener noreferrer">Toptal</Link></li>
+                            <li><Link to="https://www.upwork.com" target="_blank" rel="noopener noreferrer">Upwork</Link></li>
+                            <li><Link to="https://www.freelancer.com" target="_blank" rel="noopener noreferrer">Freelancer</Link></li>
+                            <li><Link to="https://www.toptal.com" target="_blank" rel="noopener noreferrer">Toptal</Link></li>
                             <li><Link to="https://www.linkedin.com/services" target="_blank" rel="noopener noreferrer">Linked In Pro Services</Link></li>
                         </ul>
                     </div>
