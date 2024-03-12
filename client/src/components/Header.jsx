@@ -19,7 +19,7 @@ function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/jobs">My Jobs</Nav.Link>
-              <Nav.Link href="/resumes">Resumes</Nav.Link>
+              <Nav.Link href="/resources">Resources</Nav.Link>
               {isLoggedIn === true ? (
                 <button
                   type="button"
