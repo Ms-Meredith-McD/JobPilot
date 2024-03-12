@@ -5,9 +5,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function InterviewFollowUp(props) {
+  const { interviewFollowUp } = props.trackerdata;
   const [interviewFollowUpData, setInterviewFollowUpData] = useState({});
   const [formMessage, setFormMessage] = useState("");
   const [show, setShow] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -40,7 +42,7 @@ export default function InterviewFollowUp(props) {
       if (result.status === "error") {
         setFormMessage("There was an issue submitting your interview data.");
       } else {
-        // window.location.href = "/";
+        setSubmitted(true);
       }
     } catch (err) {
       setFormMessage(
@@ -59,16 +61,23 @@ export default function InterviewFollowUp(props) {
   }
 
   useEffect(() => {
-    userData &&
+    if (userData && interviewFollowUp) {
       setInterviewFollowUpData({
-        ...interviewFollowUpData,
+        date: interviewFollowUp.date,
+        email: interviewFollowUp.email,
         user: userData._id,
       });
-  }, [userData]);
+      setSubmitted(true);
+    }
+  }, [userData, interviewFollowUp]);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button
+        className={submitted ? "green" : ""}
+        variant="primary"
+        onClick={handleShow}
+      >
         Interview Follow-Up
       </Button>
 
@@ -81,7 +90,7 @@ export default function InterviewFollowUp(props) {
               placeholder="Interview Date"
               name="date"
               aria-describedby="interviewDate"
-              value={interviewFollowUpData?.date || ""}
+              value={interviewFollowUpData.date}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -93,7 +102,7 @@ export default function InterviewFollowUp(props) {
               placeholder="Email of recipient"
               name="email"
               aria-describedby="thankYouEmail"
-              value={interviewFollowUpData?.email || ""}
+              value={interviewFollowUpData.email}
               onChange={handleInputChange}
             />
           </Form.Group>
