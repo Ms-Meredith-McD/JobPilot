@@ -1,3 +1,6 @@
+import Other from '../components/Other'
+
+
 function Team() {
 
 
@@ -38,6 +41,7 @@ function Team() {
   </div>
   </div>
   </div>
+  <Other />
       </div>
     )
   }

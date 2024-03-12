@@ -41,9 +41,9 @@ export default function Other() {
         }
     }
 
-    function handleResumeChange(e) {
+    function handleOtherChange(e) {
         setFormMessage();
-        setResumeData({ ...otherData, [e.target.name]: e.target.value });
+        setOtherData({ ...otherData, [e.target.name]: e.target.value });
     }
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export default function Other() {
                 <Form.Group className="mb-3" controlId="title">
                     <Form.Label>Title</Form.Label>
                     <Form.Control
-                        type="String"
+                        type="text"
                         placeholder="Title"
                         name='title'
                         aria-describedby='otherTitle'
@@ -67,22 +67,20 @@ export default function Other() {
                 <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Description</Form.Label>
                     <Form.Control
-                        type="String"
+                        type="text"
                         placeholder="Description"
                         name='description'
                         aria-describedby='otherDescription'
                         value={otherData?.description || ""}
                         onChange={handleOtherChange} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="completed">
-                    <Form.Label>Completed</Form.Label>
-                    <Form.Control
-                        type="Boolean"
-                        placeholder="Completed"
-                        name='completed'
-                        aria-describedby='otherCompleted'
-                        value={otherData?.completed || ""}
-                        onChange={handleOtherChange} />
+                <Form.Group className="mb-3" id="otherCheck">
+                    <Form.Check
+                        type="checkbox"
+                        label="Complete"
+                        style={{ color: "white" }}
+                        value={otherData?.complete || ""}
+                    />
                 </Form.Group>
             </Form>
 

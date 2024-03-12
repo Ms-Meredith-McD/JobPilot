@@ -70,7 +70,7 @@ export default function InterviewThanks(props) {
           <Form.Group className="mb-3" id="thankYouCheck">
             <Form.Check
               type="checkbox"
-              label="Thank you email Sent?"
+              label="Thank you email Sent"
               style={{ color: "white" }}
               value={interviewThanksData?.sent || ""}
             />
