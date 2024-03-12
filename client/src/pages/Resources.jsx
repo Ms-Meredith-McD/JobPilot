@@ -60,7 +60,7 @@ const Resources = () => {
                         <ul className="list">
                             <li><Link to="https://www.adobe.com/express/templates/resume" target="_blank" rel="noopener noreferrer">Adobe</Link></li>
                             <li><Link to="https://resume.io/resume-templates" target="_blank" rel="noopener noreferrer">Resume.io</Link></li>
-                            <li><Link to="https://www.indeed.com/profile/resume-templates" target="_blank" rel="noopener noreferrer">Indeed</Link></li>
+                            <li><Link to="https://www.indeed.com/profile/resume-templates" target="_blank" rel="noopenenoreferrer">Indeed</Link></li>
                             <li><Link to="https://resumegenius.com/resume-templates" target="_blank" rel="noopener noreferrer">Resume Genius</Link></li>
                         </ul>
                     </div>
@@ -96,7 +96,7 @@ const Resources = () => {
                             <li><Link to="https://www.adecco.com" target="_blank" rel="noopener noreferrer">Adecco</Link></li>
                             <li><Link to="https://www.kellyservices.com" target="_blank" rel="noopener noreferrer">Kelly Services</Link></li>
                             <li><Link to="https://www.kforce.com" target="_blank" rel="noopener noreferrer">Kforce</Link></li>
-                            <li><Link to="https://www.TEKsystems" target="_blank" rel="noopener noreferrer">TEKsystems</Link></li>
+                            <li><Link to="https://www.teksystems.com" target="_blank" rel="noopener noreferrer">TEKsystems</Link></li>
                             <li><Link to="https://www.randstad.com" target="_blank" rel="noopener noreferrer">Randstad</Link></li>
                         </ul>
                     </div>
