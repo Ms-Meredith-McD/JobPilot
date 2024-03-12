@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function ResumeSent(props) {
-  const { resume } = props.trackerData;
+  const { resume } = props.trackerdata;
   const [resumeData, setResumeData] = useState({});
   const [formMessage, setFormMessage] = useState("");
   const [show, setShow] = useState(false);
