@@ -23,12 +23,12 @@ const trackerSchema = new mongoose.Schema({
   //   completed: { type: Boolean }
 
   // },
-  notes: {
-    notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
-  },
-  job: {
-    job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' },
-  }
+  // notes: {
+  //   notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
+  // },
+
+  job: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }],
+
 
 });
 

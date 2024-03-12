@@ -16,9 +16,10 @@ function Jobs() {
 
   async function getJobs() {
     try {
-      const jobs = await fetch("/api/job/user/" + userData._id);
+      const jobs = await fetch(`/api/user/${userData._id}`);
       const { payload } = await jobs.json();
-      setUserJobs(payload);
+      console.log(payload);
+      setUserJobs(payload.jobs);
     } catch (error) {
       console.log(error);
     }

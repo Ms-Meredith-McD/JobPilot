@@ -42,6 +42,7 @@ router.get("/user/:userId", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    console.log('req.body', req.body)
     const payload = await createJob(req.body)
     res.status(200).json({ status: "success", payload })
   } catch (err) {
