@@ -1,9 +1,10 @@
+import hero from "../assets/images/hero.png"
 function Home() {
 
 
   return (
     <div className="bg-stars">
-      <div className="hero"></div>
+      <div className="hero" style={{backgroundImage: `url(${hero})`}}></div>
 <h1> Welcome to JobPilot</h1>
 <h2>Are you ready for liftoff?</h2>
 <p>JobPilot features a fullly functional job tracker to aid you in your search for a job. JobPilot has features such as being able to remember your interview dates, reminders to send
