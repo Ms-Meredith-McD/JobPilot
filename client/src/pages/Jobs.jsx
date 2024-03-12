@@ -32,10 +32,11 @@ function Jobs() {
     <>
       <section className="jobs page-section bg-stars">
         <div className="jobs__container container">
-          <Welcome />
-          <h2 className="mb-4">Choose your mission</h2>
-          <FormAddJob />
-
+          <div className="jobs__page-top">
+            <Welcome />
+            <h2 className="mb-4">Choose your mission</h2>
+            <FormAddJob />
+          </div>
           {userJobs.map((job) => (
             <Tracker key={job._id} job={job} />
           ))}
