@@ -1,5 +1,13 @@
 const Other = require("../models/Other");
 
+async function getAllOther() {
+    try {
+      return await Other.find({});
+    } catch (err) {
+      console.log(err.message)
+      throw new Error(err)
+    }
+  }
 
 async function getOtherById(id) {
     try {
@@ -42,6 +50,7 @@ async function deleteOtherById(id) {
 
 
 module.exports = {
+    getAllOther,
     getOtherById,
     createOther,
     updateOtherById,

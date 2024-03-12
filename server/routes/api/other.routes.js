@@ -1,12 +1,22 @@
 const router = require("express").Router()
 
 const {
+    getAllOther,
     getOtherById,
     createOther,
     updateOtherById,
     deleteOtherById
 } = require("../../controller/other.controller")
 
+router.get("/", async (req, res) => {
+    try {
+        const payload = await getAllOther()
+        res.status(200).json({ status: "success", payload })
+    } catch (err) {
+        console.log(err.message)
+        res.status(500).json({ status: "error", payload: err.message })
+    }
+})
 
 router.get("/:id", async (req, res) => {
     try {
