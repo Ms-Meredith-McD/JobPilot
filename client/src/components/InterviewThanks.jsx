@@ -16,7 +16,6 @@ export default function InterviewThanks(props) {
 
   async function submitInterviewData(e) {
     e.preventDefault();
-    console.log(interviewThanksData);
     try {
       //still needs to be setup with Alex's solution to grabbing users id
       const query = await fetch(`/api/tracker/${props.tracker}`, {
@@ -57,7 +56,6 @@ export default function InterviewThanks(props) {
   useEffect(() => {
     userData &&
       setInterviewThanksData({ ...interviewThanksData, user: userData._id });
-    console.log(interviewThanksData);
   }, [userData]);
 
   return (
