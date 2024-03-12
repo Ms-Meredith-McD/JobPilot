@@ -1,7 +1,11 @@
+@use "base/variables";
+@use "base/mixins";
 @use "base/base";
+@use "base/typography";
 
 @use "components/background";
 @use "components/footer";
+@use "components/form";
 @use "components/header";
 @use "components/jobs";
 @use "components/login";

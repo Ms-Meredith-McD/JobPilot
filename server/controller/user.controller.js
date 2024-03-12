@@ -4,12 +4,10 @@ const bcrypt = require("bcrypt");
 
 async function getUserById(id) {
   try {
-    return await User.findById(id).populate({
-      path: "jobs",
-      populate: {
-        path: "notes"
-      }
-    });
+    const foundUser = await User.findById(id).populate('jobs').lean();
+    console.log(foundUser);
+    const { password, ...newUser } = foundUser;
+    return newUser;
   } catch (err) {
     console.log(err.message)
     throw new Error(err)

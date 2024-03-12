@@ -1,8 +1,9 @@
-import { useState, Children, cloneElement } from "react";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import FormAddJob from "./FormAddJob";
 
-function FormModal({ children }) {
+function TrackerModal() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -15,12 +16,10 @@ function FormModal({ children }) {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        {Children.map(children, (child) =>
-          cloneElement(child, { handleClose: handleClose })
-        )}
+        <FormAddJob />
       </Modal>
     </>
   );
 }
 
-export default FormModal;
+export default TrackerModal;

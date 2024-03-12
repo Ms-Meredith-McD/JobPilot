@@ -1,3 +1,10 @@
+@use "../base/mixins" as m;
+
 footer {
-    margin-top: auto;
+  margin-top: auto;
+  flex-direction: column;
+
+  @include m.respond(bp-sm) {
+    flex-direction: row;
   }
+}

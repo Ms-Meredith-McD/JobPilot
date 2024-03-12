@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import useVerifyUser from "../hooks/useVerifyUser";
 
-function FormAddJob() {
+function FormAddJob(props) {
   // Very user is logged in, and get their data
   const { isLoggedIn, userData } = useVerifyUser();
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   // Variable of the form data ******
   const initialState = {
     company: "",
@@ -37,31 +41,14 @@ function FormAddJob() {
 
       // Parse the response from the first fetch request
       const jobResult = await jobResponse.json();
-      console.log(jobResult.payload._id);
-
-      // Use the response from the first fetch request to make the second fetch request
-      const newTracker = await fetch("/api/tracker", {
-        method: "POST",
-        body: JSON.stringify({ job: jobResult.payload._id }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // Check if the second fetch request was successful
-      if (newTracker.ok) {
-        const trackerResult = await newTracker.json();
-        console.log(trackerResult);
-      } else {
-        const errorData = await newTracker.json();
-        console.error("Error:", errorData.message);
-      }
+      const { newJob, newTracker } = jobResult.payload;
     } catch (error) {
       console.log(error);
     }
 
     // Reset the form state after submission
     setFormState(initialState);
+    handleClose();
   }
 
   useEffect(() => {
@@ -71,46 +58,54 @@ function FormAddJob() {
 
   return (
     <>
-      <Form>
-        {/* make sure controlId, name, value are correct; placeholder** */}
-        <Form.Group className="mb-3" controlId="company">
-          <Form.Control
-            type="input"
-            placeholder="Company"
-            value={formState.company}
-            name="company"
-            onChange={handleInputChange}
-            // onBlur={handleValidation}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="jobTitle">
-          <Form.Control
-            type="input"
-            placeholder="Job Title"
-            value={formState.jobTitle}
-            name="jobTitle"
-            onChange={handleInputChange}
-            // onBlur={handleValidation}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="website">
-          <Form.Control
-            type="input"
-            placeholder="Link"
-            value={formState.website}
-            name="website"
-            onChange={handleInputChange}
-            // onBlur={handleValidation}
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-          Submit
+      <div className="tracker__button">
+        <Button variant="primary" onClick={handleShow}>
+          Add Job
         </Button>
-        {userMessage && <h5 className="error-msg">{userMessage}</h5>}
-      </Form>
+      </div>
+
+      <Modal {...props} size="lg" centered show={show} onHide={handleClose}>
+        <Form>
+          {/* make sure controlId, name, value are correct; placeholder** */}
+          <Form.Group className="mb-3" controlId="company">
+            <Form.Control
+              type="input"
+              placeholder="Company"
+              value={formState.company}
+              name="company"
+              onChange={handleInputChange}
+              // onBlur={handleValidation}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="jobTitle">
+            <Form.Control
+              type="input"
+              placeholder="Job Title"
+              value={formState.jobTitle}
+              name="jobTitle"
+              onChange={handleInputChange}
+              // onBlur={handleValidation}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="website">
+            <Form.Control
+              type="input"
+              placeholder="Link"
+              value={formState.website}
+              name="website"
+              onChange={handleInputChange}
+              // onBlur={handleValidation}
+            />
+          </Form.Group>
+
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
+            Submit
+          </Button>
+          {userMessage && <h5 className="error-msg">{userMessage}</h5>}
+        </Form>
+      </Modal>
     </>
   );
 }

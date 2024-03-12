@@ -1,4 +1,4 @@
-const Job = require("../models/Job");
+const { Job, Tracker, User } = require("../models");
 
 async function getAllJobs() {
   try {
@@ -30,7 +30,11 @@ async function getJobs(id) {
 
 async function createJob(data) {
   try {
-    return await Job.create(data);
+    const newJob = await Job.create(data)
+    const newTracker = await Tracker.create({ job: newJob._id })
+    await User.findByIdAndUpdate(data.user, { $push: { jobs: newJob._id } });
+    return { newJob, newTracker }
+    // return await Job.create(data);
   } catch (err) {
     console.log(err.message)
     throw new Error(err)
