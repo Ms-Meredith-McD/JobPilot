@@ -10,7 +10,7 @@ function Header() {
   return (
     <>
       <header>
-        <Navbar collapseOnSelect expand="lg" className="">
+        <Navbar collapseOnSelect expand="false" className="">
           {/* <Container> */}
           <Navbar.Brand className="header__title" href="/jobs">
             JobPilot
