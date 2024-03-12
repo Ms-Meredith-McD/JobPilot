@@ -22,24 +22,45 @@ function FormAddJob() {
   }
 
   async function handleSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
     setUserMessage("Submit successful");
 
-    // Fetch request to server *****
     try {
-      const query = await fetch("/api/job", {
+      // Make the first fetch request to create a new job
+      const jobResponse = await fetch("/api/job", {
         method: "POST",
         body: JSON.stringify(formState),
         headers: {
           "Content-Type": "application/json",
         },
       });
-      const result = await query.json;
-      console.log(formState);
+
+      // Parse the response from the first fetch request
+      const jobResult = await jobResponse.json();
+      console.log(jobResult.payload._id);
+
+      // Use the response from the first fetch request to make the second fetch request
+      const newTracker = await fetch("/api/tracker", {
+        method: "POST",
+        body: JSON.stringify({ job: jobResult.payload._id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Check if the second fetch request was successful
+      if (newTracker.ok) {
+        const trackerResult = await newTracker.json();
+        console.log(trackerResult);
+      } else {
+        const errorData = await newTracker.json();
+        console.error("Error:", errorData.message);
+      }
     } catch (error) {
       console.log(error);
     }
 
+    // Reset the form state after submission
     setFormState(initialState);
   }
 

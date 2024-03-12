@@ -20,8 +20,7 @@ async function getJobById(id) {
 
 async function getJobs(id) {
   try {
-    const jobs = await Job.find({ user: id })
-    console.log(jobs);
+    const jobs = await Job.find({ user: id }).lean();
     return jobs;
   } catch (err) {
     console.log(err.message)

@@ -2,8 +2,6 @@ import useVerifyUser from "../hooks/useVerifyUser";
 
 export default function Welcome() {
   const { isLoggedIn, userData } = useVerifyUser();
-  console.log("userData at welcom", userData);
-
   const msg = isLoggedIn ? `, ${userData.username}!` : "";
 
   return (
