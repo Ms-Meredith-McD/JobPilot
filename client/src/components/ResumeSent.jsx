@@ -5,9 +5,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function ResumeSent(props) {
+  const { resume } = props.trackerdata;
   const [resumeData, setResumeData] = useState({});
   const [formMessage, setFormMessage] = useState("");
   const [show, setShow] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -16,30 +18,30 @@ export default function ResumeSent(props) {
 
   async function submitResumeData(e) {
     e.preventDefault();
-    console.log(resumeData);
     try {
       //still needs to be setup with Alex's solution to grabbing users id
-      const query = await fetch("/api/job/:id", {
+      const query = await fetch(`/api/tracker/${props.tracker}`, {
         method: "PUT",
-        body: JSON.stringify(resumeData),
+        body: JSON.stringify({
+          resume: { date: resumeData.date, link: resumeData.link },
+        }),
         headers: {
           "Content-Type": "application/json",
         },
-      }).catch((err) => {
-        setFormMessage(err, "There was an issue submitting your resume data.");
       });
 
       const result = await query.json();
       if (result.status === "error") {
         setFormMessage("There was an issue submitting your resume data.");
       } else {
-        // window.location.href = "/";
+        setSubmitted(true);
       }
     } catch (err) {
       setFormMessage(
         "We regret that we were unable to sign you up. Please try again."
       );
     }
+    handleClose();
   }
 
   function handleResumeChange(e) {
@@ -48,13 +50,23 @@ export default function ResumeSent(props) {
   }
 
   useEffect(() => {
-    userData && setResumeData({ ...resumeData, user: userData._id });
-    console.log(resumeData);
-  }, [userData]);
+    if (userData && resume) {
+      setResumeData({
+        date: resume.date,
+        link: resume.link,
+        user: userData._id,
+      });
+      setSubmitted(true);
+    }
+  }, [userData, resume]);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button
+        className={submitted ? "green" : ""}
+        variant="primary"
+        onClick={handleShow}
+      >
         Resume Sent
       </Button>
 
@@ -67,7 +79,7 @@ export default function ResumeSent(props) {
               placeholder="Date"
               name="date"
               aria-describedby="resumeSentDate"
-              value={resumeData?.date || ""}
+              value={resumeData.date}
               onChange={handleResumeChange}
             />
           </Form.Group>
@@ -78,7 +90,7 @@ export default function ResumeSent(props) {
               placeholder="Link"
               name="link"
               aria-describedby="resumeLink"
-              value={resumeData?.link || ""}
+              value={resumeData.link}
               onChange={handleResumeChange}
             />
           </Form.Group>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FormModal from "../components/Modal";
 import ResumeSent from "../components/ResumeSent";
 import Interview from "../components/Interview";
@@ -7,8 +7,11 @@ import InterviewFollowUp from "../components/InterviewFollowUp";
 import { Link } from "react-router-dom";
 
 function Tracker({ job }) {
-  const { _id, company, website, jobTitle } = job;
+  const [trackerdata, setTrackerData] = useState({});
+  const { _id, company, website, jobTitle, tracker } = job;
+  console.log("job", job);
 
+  // console.log(`${jobTitle}: ${tracker}`);
   // Define an array of components
   const components = [
     ResumeSent,
@@ -16,6 +19,20 @@ function Tracker({ job }) {
     InterviewThanks,
     InterviewFollowUp,
   ];
+
+  useEffect(() => {
+    async function getTracker() {
+      try {
+        const rawTrackerData = await fetch(`/api/tracker/${tracker}`);
+        console.log(tracker);
+        const { payload } = await rawTrackerData.json();
+        setTrackerData(payload);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getTracker();
+  }, []);
 
   return (
     <>
@@ -31,7 +48,7 @@ function Tracker({ job }) {
         <div className="tracker__row">
           {components.map((Component, index) => (
             <div className="tracker__button" key={index}>
-              <Component />
+              <Component tracker={tracker} trackerdata={trackerdata} />
             </div>
           ))}
         </div>

@@ -50,5 +50,10 @@
     &:hover {
       background-color: v.$color-grey-medium;
     }
+
+    &.green {
+      background-color: v.$color-green;
+      color: v.$color-white;
+    }
   }
 }

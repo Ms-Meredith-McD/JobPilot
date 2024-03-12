@@ -3,21 +3,16 @@ const mongoose = require('mongoose');
 
 const trackerSchema = new mongoose.Schema({
   resume: {
-    sent: { type: Boolean },
-    date: { type: Date },
+    date: { type: String },
     link: { type: String }
   },
-  interviewDate: { type: Date },
-  interviewThankYou: {
-    email: { type: String },
-    sent: { type: Boolean }
-  },
+  interviewDate: { type: String },
+  interviewThankYou: { type: String },
   interviewFollowUp: {
-    sent: { type: Boolean },
-    date: { type: Date },
+    date: { type: String },
     email: { type: String }
   },
-  
+
   notes: {
     notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
   },

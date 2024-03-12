@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 async function getUserById(id) {
   try {
     const foundUser = await User.findById(id).populate('jobs').lean();
-    console.log(foundUser);
+    // console.log(foundUser);
     const { password, ...newUser } = foundUser;
     return newUser;
   } catch (err) {
@@ -71,9 +71,9 @@ async function handleLogin(email, pw) {
     console.log("couldn't validate password")
     throw new Error("Password failed")
   }
-  console.log('foundUser: ', foundUser)
+  // console.log('foundUser: ', foundUser)
   const { password, ...modifiedUser } = foundUser;
-  console.log('modifiedUser: ', modifiedUser);
+  // console.log('modifiedUser: ', modifiedUser);
   return modifiedUser
 }
 

@@ -49,6 +49,7 @@ function FormAddJob(props) {
     // Reset the form state after submission
     setFormState(initialState);
     handleClose();
+    location.reload();
   }
 
   useEffect(() => {

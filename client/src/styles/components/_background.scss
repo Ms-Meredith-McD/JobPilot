@@ -1,6 +1,7 @@
 body:has(.bg-stars) {
   background-image: linear-gradient(rgba(#141414, 0.75), rgba(#141414, 0.75)),
     url(../assets/images/bg-stars.png);
+  background-attachment: fixed;
 }
 
 .bg-stars {

@@ -5,9 +5,13 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function Interview(props) {
+  const { interviewDate } = props.trackerdata;
+  console.log("destructured data", props.trackerdata);
   const [interviewData, setInterviewData] = useState({});
+  console.log("state", interviewData);
   const [formMessage, setFormMessage] = useState("");
   const [show, setShow] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -15,12 +19,11 @@ export default function Interview(props) {
 
   async function submitInterviewData(e) {
     e.preventDefault();
-    console.log(interviewData);
     try {
       //still needs to be setup with Alex's solution to grabbing users id
-      const query = await fetch("/api/job/:id", {
+      const query = await fetch(`/api/tracker/${props.tracker}`, {
         method: "PUT",
-        body: JSON.stringify(interviewData),
+        body: JSON.stringify({ interviewDate: interviewData.date }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -35,13 +38,14 @@ export default function Interview(props) {
       if (result.status === "error") {
         setFormMessage("There was an issue submitting your interview data.");
       } else {
-        // window.location.href = "/";
+        setSubmitted(true);
       }
     } catch (err) {
       setFormMessage(
         "There was an issue submitting your interview data. Please try again"
       );
     }
+    handleClose();
   }
 
   function handleInterviewChange(e) {
@@ -50,13 +54,20 @@ export default function Interview(props) {
   }
 
   useEffect(() => {
-    userData && setInterviewData({ ...interviewData, user: userData._id });
-    console.log(interviewData);
-  }, [userData]);
+    if (userData && interviewDate) {
+      setInterviewData({ date: interviewDate, user: userData._id });
+      console.log("interviewData", interviewData);
+      setSubmitted(true);
+    }
+  }, [userData, interviewDate]);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button
+        className={submitted ? "green" : ""}
+        variant="primary"
+        onClick={handleShow}
+      >
         Interview Date
       </Button>
 
@@ -69,7 +80,7 @@ export default function Interview(props) {
               placeholder="Interview Date"
               name="date"
               aria-describedby="interviewDate"
-              value={interviewData?.date || ""}
+              value={interviewData.date}
               onChange={handleInterviewChange}
             />
           </Form.Group>

@@ -16,12 +16,16 @@ export default function InterviewFollowUp(props) {
 
   async function submitInterviewData(e) {
     e.preventDefault();
-    console.log(interviewFollowUpData);
     try {
       //still needs to be setup with Alex's solution to grabbing users id
-      const query = await fetch("/api/job/:id", {
+      const query = await fetch(`/api/tracker/${props.tracker}`, {
         method: "PUT",
-        body: JSON.stringify(interviewFollowUpData),
+        body: JSON.stringify({
+          interviewFollowUp: {
+            date: interviewFollowUpData.date,
+            email: interviewFollowUpData.email,
+          },
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -43,6 +47,7 @@ export default function InterviewFollowUp(props) {
         "There was an issue submitting your interview data. Please try again"
       );
     }
+    handleClose();
   }
 
   function handleInputChange(e) {
@@ -59,7 +64,6 @@ export default function InterviewFollowUp(props) {
         ...interviewFollowUpData,
         user: userData._id,
       });
-    console.log(interviewFollowUpData);
   }, [userData]);
 
   return (
@@ -70,15 +74,6 @@ export default function InterviewFollowUp(props) {
 
       <Modal {...props} size="lg" centered show={show} onHide={handleClose}>
         <Form className="resumeForm">
-          <Form.Group className="mb-3" id="thankYouCheck">
-            <Form.Check
-              type="checkbox"
-              label="Thank you email Sent?"
-              style={{ color: "white" }}
-              value={interviewFollowUpData?.sent || ""}
-            />
-          </Form.Group>
-
           <Form.Group className="mb-3" controlId="date">
             <Form.Label>Date of your interview</Form.Label>
             <Form.Control

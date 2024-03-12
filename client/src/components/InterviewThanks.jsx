@@ -16,12 +16,11 @@ export default function InterviewThanks(props) {
 
   async function submitInterviewData(e) {
     e.preventDefault();
-    console.log(interviewThanksData);
     try {
       //still needs to be setup with Alex's solution to grabbing users id
-      const query = await fetch("/api/job/:id", {
+      const query = await fetch(`/api/tracker/${props.tracker}`, {
         method: "PUT",
-        body: JSON.stringify(interviewThanksData),
+        body: JSON.stringify({ interviewThankYou: interviewThanksData.email }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -43,6 +42,7 @@ export default function InterviewThanks(props) {
         "There was an issue submitting your interview data. Please try again"
       );
     }
+    handleClose();
   }
 
   function handleInputChange(e) {
@@ -56,7 +56,6 @@ export default function InterviewThanks(props) {
   useEffect(() => {
     userData &&
       setInterviewThanksData({ ...interviewThanksData, user: userData._id });
-    console.log(interviewThanksData);
   }, [userData]);
 
   return (
@@ -67,23 +66,14 @@ export default function InterviewThanks(props) {
 
       <Modal {...props} size="lg" centered show={show} onHide={handleClose}>
         <Form className="resumeForm">
-          <Form.Group className="mb-3" id="thankYouCheck">
-            <Form.Check
-              type="checkbox"
-              label="Thank you email Sent"
-              style={{ color: "white" }}
-              value={interviewThanksData?.sent || ""}
-            />
-          </Form.Group>
-
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
               placeholder="Email of recipient"
-              name="date"
+              name="email"
               aria-describedby="thankYouEmail"
-              value={interviewThanksData?.date || ""}
+              value={interviewThanksData?.email || ""}
               onChange={handleInputChange}
             />
           </Form.Group>
