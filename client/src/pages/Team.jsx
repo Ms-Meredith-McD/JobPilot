@@ -37,7 +37,7 @@ function Team() {
   <h2>Meredith McDonald</h2>
   <div className="col-md-6 teamCol">
   <a href="https://github.com/Ms-Meredith-McD" className="btn btn-dark teamBtn">Github</a>
-  <a href="https:/https://meredithmcdonald.netlify.app//" className="btn btn-dark teamBtn">Portfolio</a>
+  <a href="https://meredithmcdonald.netlify.app" className="btn btn-dark teamBtn">Portfolio</a>
   </div>
   </div>
   </div>
