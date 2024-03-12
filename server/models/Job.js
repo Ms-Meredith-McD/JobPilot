@@ -12,6 +12,10 @@ const jobSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Note",
   },
+  tracker: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Tracker",
+  },
 });
 
 const Job = mongoose.model("Job", jobSchema);

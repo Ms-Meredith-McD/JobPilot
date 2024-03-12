@@ -19,9 +19,11 @@ export default function ResumeSent(props) {
     console.log(resumeData);
     try {
       //still needs to be setup with Alex's solution to grabbing users id
-      const query = await fetch("/api/job/:id", {
+      const query = await fetch(`/api/tracker/${props.tracker}`, {
         method: "PUT",
-        body: JSON.stringify(resumeData),
+        body: JSON.stringify({
+          resume: { date: resumeData.date, link: resumeData.link },
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -40,6 +42,7 @@ export default function ResumeSent(props) {
         "We regret that we were unable to sign you up. Please try again."
       );
     }
+    handleClose();
   }
 
   function handleResumeChange(e) {

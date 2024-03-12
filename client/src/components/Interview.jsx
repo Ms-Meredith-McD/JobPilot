@@ -18,9 +18,9 @@ export default function Interview(props) {
     console.log(interviewData);
     try {
       //still needs to be setup with Alex's solution to grabbing users id
-      const query = await fetch("/api/job/:id", {
+      const query = await fetch(`/api/tracker/${props.tracker}`, {
         method: "PUT",
-        body: JSON.stringify(interviewData),
+        body: JSON.stringify({ interviewDate: interviewData.date }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,6 +42,7 @@ export default function Interview(props) {
         "There was an issue submitting your interview data. Please try again"
       );
     }
+    handleClose();
   }
 
   function handleInterviewChange(e) {

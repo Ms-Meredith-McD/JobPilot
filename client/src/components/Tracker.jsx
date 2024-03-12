@@ -7,8 +7,9 @@ import InterviewFollowUp from "../components/InterviewFollowUp";
 import { Link } from "react-router-dom";
 
 function Tracker({ job }) {
-  const { _id, company, website, jobTitle } = job;
+  const { _id, company, website, jobTitle, tracker } = job;
 
+  console.log(`${jobTitle}: ${tracker}`);
   // Define an array of components
   const components = [
     ResumeSent,
@@ -31,7 +32,7 @@ function Tracker({ job }) {
         <div className="tracker__row">
           {components.map((Component, index) => (
             <div className="tracker__button" key={index}>
-              <Component />
+              <Component tracker={tracker} />
             </div>
           ))}
         </div>

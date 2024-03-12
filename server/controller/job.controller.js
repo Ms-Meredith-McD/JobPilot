@@ -30,8 +30,13 @@ async function getJobs(id) {
 
 async function createJob(data) {
   try {
-    const newJob = await Job.create(data)
+    let newJob = await Job.create(data)
     const newTracker = await Tracker.create({ job: newJob._id })
+    // reference the newJob add to it tracker: newTracker._id 
+    console.log('1', newJob)
+    newJob = await Job.findByIdAndUpdate(newJob._id, { tracker: newTracker._id });
+    console.log('2', newJob)
+
     await User.findByIdAndUpdate(data.user, { $push: { jobs: newJob._id } });
     return { newJob, newTracker }
     // return await Job.create(data);
