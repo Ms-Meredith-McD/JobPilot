@@ -4,7 +4,7 @@ const Tracker = require("../models/Tracker");
 async function getTrackerById(id) {
   try {
     const trackerData = await Tracker.findById(id).lean();
-    // console.log('trackerData', trackerData);
+    console.log('trackerData', trackerData);
     return trackerData;
   } catch (err) {
     console.log(err.message)

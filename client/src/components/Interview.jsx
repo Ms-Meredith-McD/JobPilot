@@ -5,9 +5,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function Interview(props) {
+  const { interviewDate } = props.trackerData;
+  console.log("destructured data", interviewDate);
   const [interviewData, setInterviewData] = useState({});
   const [formMessage, setFormMessage] = useState("");
   const [show, setShow] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -34,7 +37,7 @@ export default function Interview(props) {
       if (result.status === "error") {
         setFormMessage("There was an issue submitting your interview data.");
       } else {
-        // window.location.href = "/";
+        setSubmitted(true);
       }
     } catch (err) {
       setFormMessage(
@@ -50,12 +53,20 @@ export default function Interview(props) {
   }
 
   useEffect(() => {
-    userData && setInterviewData({ ...interviewData, user: userData._id });
-  }, [userData]);
+    if (userData && interviewDate) {
+      setInterviewData({ date: interviewDate, user: userData._id });
+      console.log("interviewData", interviewData);
+    }
+    setSubmitted(true);
+  }, [userData, interviewDate]);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button
+        className={submitted ? "green" : ""}
+        variant="primary"
+        onClick={handleShow}
+      >
         Interview Date
       </Button>
 
@@ -68,7 +79,7 @@ export default function Interview(props) {
               placeholder="Interview Date"
               name="date"
               aria-describedby="interviewDate"
-              value={interviewData?.date || ""}
+              value={interviewData.date}
               onChange={handleInterviewChange}
             />
           </Form.Group>

@@ -11,14 +11,10 @@ export default function ResumeSent(props) {
   const [show, setShow] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  console.log(submitted);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const { isLoggedIn, userData } = useVerifyUser();
-
-  console.log("resume", resume);
 
   async function submitResumeData(e) {
     e.preventDefault();
