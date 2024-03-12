@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Resume from "./pages/Resume";
+import Resources from "./pages/Resources";
 import Jobs from "./pages/Jobs";
 import Team from "./pages/Team";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -32,7 +32,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/resume" element={<Resume />} />
+            <Route path="/resources" element={<Resources />} />
             <Route path="/jobs" element={isLoggedIn ? <Jobs /> : <Home />} />
             <Route path="/team" element={<Team />} />
             <Route path="*" element={<Home />} />
