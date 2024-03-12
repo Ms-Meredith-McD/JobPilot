@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import useVerifyUser from "../hooks/useVerifyUser"
 
-export default function Other() {
-    const [otherData, setOtherData] = useState({});
+export default function Other(props) {
+    const [otherData, setOtherData] = useState(props.otherData);
 
     const [formMessage, setFormMessage] = useState("");
 
