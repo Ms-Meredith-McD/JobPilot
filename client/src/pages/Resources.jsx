@@ -3,25 +3,53 @@ import '../styles/components/_resources.scss';
 import React, { useEffect, useState } from 'react';
 
 
-
 const Resources = () => {
-
     const [jokeImageUrl, setJokeImageUrl] = useState('');
 
-useEffect(() => {
-    fetch('https://icanhazdadjoke.com/j/R7UfaahVfFd.png', {
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        setJokeImageUrl(data.url);
-    })
-    .catch(error => {
-        console.error('Error fetching dad joke:', error);
-    });
-}, []);
+    useEffect(() => {
+        fetchRandomDadJoke();
+    }, []);
+
+    const fetchRandomDadJoke = () => {
+        fetch('https://icanhazdadjoke.com/', {
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch dad joke');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const jokeId = data.id;
+            const imageUrl = `https://icanhazdadjoke.com/j/${jokeId}.png`;
+            fetchJokeImage(imageUrl);
+        })
+        .catch(error => {
+            console.error('Error fetching dad joke:', error);
+        });
+    };
+
+    const fetchJokeImage = (jokeImageUrl) => {
+        fetch(jokeImageUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch dad joke image');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const imageUrl = URL.createObjectURL(blob);
+                setJokeImageUrl(imageUrl);
+            })
+            .catch(error => {
+                console.error('Error fetching dad joke image:', error);
+            });
+    };
+
+
 
     return (
         <section className="page-section bg-stars">
@@ -30,18 +58,18 @@ useEffect(() => {
                     <div className="resume-column">
                         <h2>Resumes:</h2>
                         <ul className="list">
-                        <li><Link to="https://www.adobe.com/express/templates/resume"target="_blank" rel="noopener noreferrer">Adobe</Link></li>
-                        <li><Link to="https://resume.io/resume-templates"target="_blank" rel="noopener noreferrer">Resume.io</Link></li>
-                        <li><Link to="https://www.indeed.com/profile/resume-templates"target="_blank" rel="noopener noreferrer">Indeed</Link></li>
-                        <li><Link to="https://resumegenius.com/resume-templates"target="_blank" rel="noopener noreferrer">Resume Genius</Link></li>
+                            <li><Link to="https://www.adobe.com/express/templates/resume" target="_blank" rel="noopener noreferrer">Adobe</Link></li>
+                            <li><Link to="https://resume.io/resume-templates" target="_blank" rel="noopener noreferrer">Resume.io</Link></li>
+                            <li><Link to="https://www.indeed.com/profile/resume-templates" target="_blank" rel="noopener noreferrer">Indeed</Link></li>
+                            <li><Link to="https://resumegenius.com/resume-templates" target="_blank" rel="noopener noreferrer">Resume Genius</Link></li>
                         </ul>
                     </div>
                     <div className="resume-column">
                         <h2>Cover Letters:</h2>
                         <ul className="list">
-                            <li><Link to="https://www.indeed.com/career-advice/resumes-cover-letters/free-cover-letter"target="_blank" rel="noopener noreferrer">Indeed</Link></li>
-                            <li><Link to="https://resumegenius.com/cover-letter-templates/basic-simple-templates"target="_blank" rel="noopener noreferrer">Resume Genius</Link></li>
-                            <li><Link to="https://www.canva.com/create/cover-letters/"target="_blank" rel="noopener noreferrer">Canva</Link></li>
+                            <li><Link to="https://www.indeed.com/career-advice/resumes-cover-letters/free-cover-letter" target="_blank" rel="noopener noreferrer">Indeed</Link></li>
+                            <li><Link to="https://resumegenius.com/cover-letter-templates/basic-simple-templates" target="_blank" rel="noopener noreferrer">Resume Genius</Link></li>
+                            <li><Link to="https://www.canva.com/create/cover-letters/" target="_blank" rel="noopener noreferrer">Canva</Link></li>
                             <li><Link to="https://docs.google.com/document/d/1a4yU8rWtT1DWTS7H_c9EguUyFt49B2qU92demxvozTQ/edit" target="_blank" rel="noopener noreferrer">Google Docs</Link>
                             </li>
                         </ul>
@@ -50,9 +78,9 @@ useEffect(() => {
                     <div className="resume-column">
                         <h2>Job Search:</h2>
                         <ul className="list">
-                            <li><Link to="https://www.indeed.com/"target="_blank" rel="noopener noreferrer">Indeed</Link></li>
-                            <li><Link to="https://www.linkedin.com/"target="_blank" rel="noopener noreferrer">LinkedIn</Link></li>
-                            <li><Link to="https://www.dice.com"target="_blank" rel="noopener noreferrer">Tech Jobs: Dice</Link></li>
+                            <li><Link to="https://www.indeed.com/" target="_blank" rel="noopener noreferrer">Indeed</Link></li>
+                            <li><Link to="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</Link></li>
+                            <li><Link to="https://www.dice.com" target="_blank" rel="noopener noreferrer">Tech Jobs: Dice</Link></li>
                             <li><Link to="https:/www.ziprecruiter.com" target="_blank" rel="noopener noreferrer">Zip Recruiter</Link></li>
                             <li><Link to="https:/www.glassdoor.com" target="_blank" rel="noopener noreferrer">Jobs & Reviews: Glassdoor</Link></li>
                             <li><Link to="https:/www.monster.com" target="_blank" rel="noopener noreferrer">Monster</Link></li>
@@ -63,14 +91,14 @@ useEffect(() => {
                     <div className="resume-column">
                         <h2>Contracts:</h2>
                         <ul className="list">
-                            <li><Link to="https://www.roberthalf.com/"target="_blank" rel="noopener noreferrer">Robert Half</Link></li>
-                            <li><Link to="https://www.aerotek.com"target="_blank" rel="noopener noreferrer">Aerotek</Link></li>
-                            <li><Link to="https://www.adecco.com"target="_blank" rel="noopener noreferrer">Adecco</Link></li>
+                            <li><Link to="https://www.roberthalf.com/" target="_blank" rel="noopener noreferrer">Robert Half</Link></li>
+                            <li><Link to="https://www.aerotek.com" target="_blank" rel="noopener noreferrer">Aerotek</Link></li>
+                            <li><Link to="https://www.adecco.com" target="_blank" rel="noopener noreferrer">Adecco</Link></li>
                             <li><Link to="https:/www.kellyservices.com" target="_blank" rel="noopener noreferrer">Kelly Services</Link></li>
                             <li><Link to="https:/www.kforce.com" target="_blank" rel="noopener noreferrer">Kforce</Link></li>
                             <li><Link to="https:/www.TEKsystems" target="_blank" rel="noopener noreferrer">TEKsystems</Link></li>
                             <li><Link to="https:/www.randstad.com" target="_blank" rel="noopener noreferrer">Randstad</Link></li>
-                            </ul>
+                        </ul>
                     </div>
                     <div className="resume-column">
                         <h2>Freelance:</h2>
@@ -81,15 +109,16 @@ useEffect(() => {
                             <li><Link to="https://www.linkedin.com/services" target="_blank" rel="noopener noreferrer">Linked In Pro Services</Link></li>
                         </ul>
                     </div>
+                    <div className="row"></div>
                     <div className="resume-column">
-            <h2>Random Dad Joke</h2>
-            <ul className="list">
-                {jokeImageUrl && <img src={jokeImageUrl} alt="Random Dad Joke" />}
-            </ul>
-        </div>
+                        <h3>Random Dad Joke to Brighten Your Day: </h3>
+                        <div className="dad-joke-container" style={{ backgroundColor: 'gray', padding: '10px' }}>
+                            {jokeImageUrl && <img src={jokeImageUrl} alt="Random Dad Joke" style={{ maxWidth: '100%', height: 'auto' }} />}
+                        </div>
                     </div>
                 </div>
-            
+            </div>
+
         </section>
     );
 };
