@@ -16,9 +16,10 @@ function Jobs() {
 
   async function getJobs() {
     try {
-      const jobs = await fetch("/api/job/user/" + userData._id);
+      const jobs = await fetch(`/api/user/${userData._id}`);
       const { payload } = await jobs.json();
-      setUserJobs(payload);
+      console.log(payload);
+      setUserJobs(payload.jobs);
     } catch (error) {
       console.log(error);
     }
@@ -29,14 +30,13 @@ function Jobs() {
   }, [userData]);
   return (
     <>
-      <section className="page-section bg-stars">
-        <div className="container">
-          <Welcome />
-          <h2 className="mb-4">Choose your mission</h2>
-          <FormModal>
+      <section className="jobs page-section bg-stars">
+        <div className="jobs__container container">
+          <div className="jobs__page-top">
+            <Welcome />
+            <h2 className="mb-4">Choose your mission</h2>
             <FormAddJob />
-          </FormModal>
-
+          </div>
           {userJobs.map((job) => (
             <Tracker key={job._id} job={job} />
           ))}
