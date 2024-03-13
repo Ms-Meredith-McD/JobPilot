@@ -5,6 +5,7 @@ import Interview from "../components/Interview";
 import InterviewThanks from "../components/InterviewThanks";
 import InterviewFollowUp from "../components/InterviewFollowUp";
 import { Link } from "react-router-dom";
+import Note from "../components/Note";
 
 function Tracker({ job }) {
   const [trackerdata, setTrackerData] = useState({});
@@ -18,6 +19,7 @@ function Tracker({ job }) {
     Interview,
     InterviewThanks,
     InterviewFollowUp,
+    Note,
   ];
 
   useEffect(() => {
