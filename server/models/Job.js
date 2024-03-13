@@ -8,10 +8,6 @@ const jobSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  notes: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Note",
-  },
   tracker: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Tracker",

@@ -17,7 +17,7 @@ const trackerSchema = new mongoose.Schema({
   },
 
   notes: {
-    notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
+    type: String
   },
   job: {
     job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' },

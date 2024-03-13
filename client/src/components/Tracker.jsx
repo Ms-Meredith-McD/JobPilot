@@ -5,8 +5,7 @@ import Interview from "../components/Interview";
 import InterviewThanks from "../components/InterviewThanks";
 import InterviewFollowUp from "../components/InterviewFollowUp";
 import { Link } from "react-router-dom";
-import Other from "../components/Other"
-import Add from "../components/Add"
+import Note from "../components/Note";
 
 function Tracker({ job }) {
   const [trackerdata, setTrackerData] = useState({});
@@ -20,6 +19,7 @@ function Tracker({ job }) {
     Interview,
     InterviewThanks,
     InterviewFollowUp,
+    Note,
   ];
 
   useEffect(() => {
@@ -53,14 +53,6 @@ function Tracker({ job }) {
               <Component tracker={tracker} trackerdata={trackerdata} />
             </div>
           ))}
-          {[].map(data => (
-            <div className="tracker__button" key={index}>
-              <Other otherdata={data} />
-            </div>
-          ))}
-          <div className="tracker_button">
-            +
-          </div>
         </div>
       </section>
     </>

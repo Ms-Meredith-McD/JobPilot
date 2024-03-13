@@ -8,7 +8,6 @@ import Team from "./pages/Team";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Signup from "./pages/Signup";
 import Cookie from "js-cookie";
 import useVerifyUser from "./hooks/useVerifyUser";
 
@@ -31,7 +30,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/jobs" element={isLoggedIn ? <Jobs /> : <Home />} />
             <Route path="/team" element={<Team />} />
