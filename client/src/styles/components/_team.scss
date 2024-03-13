@@ -1,18 +1,29 @@
+@use "../base/mixins" as m;
+
 #teamContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 6rem 0;
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr;
+  @include m.respond(bp-sm) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
+.team-title {
+  grid-column: 1 / -1;
+}
 .teamRow {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-    --bs-gutter-x:var(--bs-gutter-x)
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  //   margin-top: 6rem;
+  --bs-gutter-x: var(--bs-gutter-x);
 }
 
 .teamBtn {
-    margin: 1rem;
+  margin: 1rem;
 }
