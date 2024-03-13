@@ -4,14 +4,14 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-JobPilot is a fully functional job tracker made in order to aid the user in search of a job. A user is able to sign up up an account, and keep track of all job applications they have sent out, and several features in regards to that. This project was made to show our technical skills creating a full MERN stack application
+JobPilot is a fully functional job tracker made in order to aid the user in search of a job. A user is able to sign up an account, and keep track of all job applications they have sent out, and several features in regards to that. This project was made to show our technical skills creating a full MERN stack application
 
 ## Features
-* Login/Signup: A user is able to make their own account by signing up, and login with the same credentials. All of the users data persits as well
+* Login/Signup: Make your own account by signing up, and login with the same credentials. All of your data will persist upon logout as well
 
-* Job Tracker: Keep track of all of your job applications through use of the Job Tracker. You can keep notes about the dates of your interview, reminders to send thank you emails, schedule follow-ups, and more!
+* Job Tracker: Keep track of all of your job applications through the use of the Job Tracker. You can keep notes about the dates of your interview, reminders to send thank you emails, schedule follow-ups, and more!
 
-* Resources: Place orders directly through the website, which then redirects the user to a thank you page
+* Resources: View helpful resources to aid you in your job search
 
 * Meet The Team: A page to see the full team that designed and made JobPilot
 
@@ -41,7 +41,7 @@ JobPilot is a fully functional job tracker made in order to aid the user in sear
 
 ## Installation
 
-This project is running off of Heroku and can be found at `placeholder`
+This project is running off of Heroku and can be found at https://job-pilot-a6ce9a91751d.herokuapp.com/
 
 Interested in running the app locally instead? 
 
@@ -53,27 +53,32 @@ Interested in running the app locally instead?
 
 Navigate to the link above to reach the homepage of the site.
 
-![Example Image of the site]()
+
+![Example Image of the site](/assets/homepage.png)
 
 
 In order to use all features of the site, you will need to create an account. Simply navigate to login within the navbar, and fill out the signup form
 
-![Example Image of the site]()
+
+![Example Image of the site](/assets/login.png)
 
 
 Once logged in, the user will be automatically redirected to the job tracker page. Here you are able to create new trackers for your job interviews and applications
 
-![Example Image of the site]()
+
+![Example Image of the site](/assets/tracker.png)
 
 
 You can reach the resources page by going to the navbar, and selecting resources. Here you can see helpful links and templates for resumes, and save your own resumes in here for reference.
 
-![Example Image of the site]()
+
+![Example Image of the site](/assets/resources.png)
 
 
 If you would like to see the full team behind JobPilot, as well as browse our teams portfolio's, please navigate to the 'Meet the team!' link within the footer of the application
 
-![Example Image of the site]()
+
+![Example Image of the site](/assets/team.png)
 
 
 ## Credits
