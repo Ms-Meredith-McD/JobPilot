@@ -42,10 +42,9 @@ function Tracker({ job }) {
         <h3 className="tracker__title">{company}</h3>
         <div className="tracker__row tracker__row--end">
           <h4 className="tracker__title">{jobTitle}</h4>
-          <Link className="tracker__joblink" to={website}>
+          <a className="tracker__joblink" href={website} target="_blank">
             <h4 className="tracker__website">{website}</h4>
-          </Link>
-          <h4 className="tracker__notes">Notes</h4>
+          </a>
         </div>
         <div className="tracker__row">
           {components.map((Component, index) => (

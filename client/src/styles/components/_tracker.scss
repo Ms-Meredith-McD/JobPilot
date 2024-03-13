@@ -20,10 +20,10 @@
     }
 
     &--end {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       @include m.respond(bp-sm) {
         display: grid;
-        grid-template-columns: 1fr max-content max-content;
+        grid-template-columns: 1fr max-content;
       }
     }
   }
