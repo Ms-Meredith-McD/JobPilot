@@ -28,6 +28,10 @@ function Jobs() {
   useEffect(() => {
     if (userData) getJobs();
   }, [userData]);
+
+  useEffect(() => {
+    getJobs();
+  }, [userJobs]);
   return (
     <>
       <section className="jobs page-section bg-stars">

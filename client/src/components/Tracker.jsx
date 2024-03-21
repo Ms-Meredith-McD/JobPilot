@@ -4,13 +4,14 @@ import ResumeSent from "../components/ResumeSent";
 import Interview from "../components/Interview";
 import InterviewThanks from "../components/InterviewThanks";
 import InterviewFollowUp from "../components/InterviewFollowUp";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Note from "../components/Note";
 
 function Tracker({ job }) {
   const [trackerdata, setTrackerData] = useState({});
   const { _id, user, company, website, jobTitle, tracker } = job;
   console.log("job", job);
+  const navigate = useNavigate();
 
   // console.log(`${jobTitle}: ${tracker}`);
   // Define an array of components
@@ -22,25 +23,23 @@ function Tracker({ job }) {
     Note,
   ];
 
-  async function deleteJob() {
-    console.log("DELETE JOB CLICKED");
+  const handleDelete = async () => {
     try {
-      // delete the tracker associated with the job
-      await fetch(`/api/tracker/${tracker}`, {
+      const response = await fetch(`/api/job/${job._id}`, {
         method: "DELETE",
       });
-      // PUT - remove the job from the user
-      await fetch(`/api/user/${user}/job/${_id}`, {
-        method: "PUT",
-      });
-      // await delete the job
-      await fetch(`/api/job/${job}`, {
-        method: "DELETE",
-      });
+      if (response.ok) {
+        // Handle successful deletion, e.g., show a success message or update the UI
+        console.log("Job and tracker deleted successfully");
+      } else {
+        // Handle deletion error
+        console.error("Failed to delete job and tracker");
+      }
+      navigate("/jobs");
     } catch (error) {
-      console.log(error);
+      console.error("Error deleting job and tracker:", error);
     }
-  }
+  };
 
   useEffect(() => {
     async function getTracker() {
@@ -60,7 +59,7 @@ function Tracker({ job }) {
     <>
       <section className="tracker">
         <h3 className="tracker__title">{company}</h3>
-        <button className="btn btn-light" onClick={deleteJob}>
+        <button className="btn btn-light" onClick={handleDelete}>
           Delete Job
         </button>
         <div className="tracker__row tracker__row--end">
