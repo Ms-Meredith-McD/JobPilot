@@ -36,6 +36,21 @@ async function updateUserById(id, data) {
   }
 }
 
+async function updateUserDeleteJob(id, jobId, data) {
+  try {
+    const thisUser = await User.findByIdAndUpdate(id, data, { new: true });
+    console.log('thisUser.jobs', thisUser.jobs[0].toString() === jobId);
+    const newJobsArr = thisUser.jobs.map(job => {
+      job.toString != jobId
+    });
+    thisUser.jobs = newJobsArr;
+    return thisUser;
+  } catch (err) {
+    console.log(err.message)
+    throw new Error(err)
+  }
+}
+
 async function getAllUsers() {
   try {
     return await User.find({});
@@ -83,6 +98,7 @@ module.exports = {
   getUserById,
   createUser,
   updateUserById,
+  updateUserDeleteJob,
   deleteUserById,
   handleLogin
 }

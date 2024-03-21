@@ -7,6 +7,7 @@ const {
   getUserById,
   createUser,
   updateUserById,
+  updateUserDeleteJob,
   deleteUserById,
   handleLogin
 } = require("../../controller/user.controller")
@@ -70,6 +71,17 @@ router.post("/logout", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const payload = await updateUserById(req.params.id, req.body)
+    res.status(200).json({ status: "success", payload })
+  } catch (err) {
+    console.log(err.message)
+    res.status(500).json({ status: "error", payload: err.message })
+  }
+})
+
+router.put("/:id/job/:jobId", async (req, res) => {
+  try {
+    console.log('received put request');
+    const payload = await updateUserDeleteJob(req.params.id, req.params.jobId, req.body)
     res.status(200).json({ status: "success", payload })
   } catch (err) {
     console.log(err.message)

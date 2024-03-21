@@ -9,7 +9,7 @@ import Note from "../components/Note";
 
 function Tracker({ job }) {
   const [trackerdata, setTrackerData] = useState({});
-  const { _id, company, website, jobTitle, tracker } = job;
+  const { _id, user, company, website, jobTitle, tracker } = job;
   console.log("job", job);
 
   // console.log(`${jobTitle}: ${tracker}`);
@@ -21,6 +21,26 @@ function Tracker({ job }) {
     InterviewFollowUp,
     Note,
   ];
+
+  async function deleteJob() {
+    console.log("DELETE JOB CLICKED");
+    try {
+      // delete the tracker associated with the job
+      await fetch(`/api/tracker/${tracker}`, {
+        method: "DELETE",
+      });
+      // PUT - remove the job from the user
+      await fetch(`/api/user/${user}/job/${_id}`, {
+        method: "PUT",
+      });
+      // await delete the job
+      await fetch(`/api/job/${job}`, {
+        method: "DELETE",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     async function getTracker() {
@@ -40,6 +60,9 @@ function Tracker({ job }) {
     <>
       <section className="tracker">
         <h3 className="tracker__title">{company}</h3>
+        <button className="btn btn-light" onClick={deleteJob}>
+          Delete Job
+        </button>
         <div className="tracker__row tracker__row--end">
           <h4 className="tracker__title">{jobTitle}</h4>
           <a className="tracker__joblink" href={website} target="_blank">
