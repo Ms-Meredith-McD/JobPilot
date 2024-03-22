@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
-import FormModal from "../components/Modal";
+import React, { useEffect, useState, memo } from "react";
 import ResumeSent from "../components/ResumeSent";
 import Interview from "../components/Interview";
 import InterviewThanks from "../components/InterviewThanks";
 import InterviewFollowUp from "../components/InterviewFollowUp";
-import { useNavigate } from "react-router-dom";
+import DeleteJob from "../components/DeleteJob";
 import Note from "../components/Note";
 
-function Tracker({ job }) {
+const Tracker = memo(function Tracker({ job, getJobs }) {
   const [trackerdata, setTrackerData] = useState({});
   const { _id, user, company, website, jobTitle, tracker } = job;
   console.log("job", job);
-  const navigate = useNavigate();
 
-  // console.log(`${jobTitle}: ${tracker}`);
   // Define an array of components
   const components = [
     ResumeSent,
@@ -22,24 +19,6 @@ function Tracker({ job }) {
     InterviewFollowUp,
     Note,
   ];
-
-  const handleDelete = async () => {
-    try {
-      const response = await fetch(`/api/job/${job._id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        // Handle successful deletion, e.g., show a success message or update the UI
-        console.log("Job and tracker deleted successfully");
-      } else {
-        // Handle deletion error
-        console.error("Failed to delete job and tracker");
-      }
-      navigate("/jobs");
-    } catch (error) {
-      console.error("Error deleting job and tracker:", error);
-    }
-  };
 
   useEffect(() => {
     async function getTracker() {
@@ -58,10 +37,11 @@ function Tracker({ job }) {
   return (
     <>
       <section className="tracker">
-        <h3 className="tracker__title">{company}</h3>
-        <button className="btn btn-light" onClick={handleDelete}>
-          Delete Job
-        </button>
+        <div className="tracker__row tracker__row--end">
+          <h3 className="tracker__title">{company}</h3>
+          <DeleteJob jobId={_id} getJobs={getJobs} />
+        </div>
+
         <div className="tracker__row tracker__row--end">
           <h4 className="tracker__title">{jobTitle}</h4>
           <a className="tracker__joblink" href={website} target="_blank">
@@ -78,6 +58,6 @@ function Tracker({ job }) {
       </section>
     </>
   );
-}
+});
 
 export default Tracker;

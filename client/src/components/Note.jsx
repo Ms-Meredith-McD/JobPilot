@@ -6,11 +6,7 @@ import Modal from "react-bootstrap/Modal";
 
 export default function Note(props) {
   const { notes } = props.trackerdata;
-  console.log("destructured data", props.trackerdata);
-
   const [noteData, setNoteData] = useState({ body: "" });
-  console.log("state", noteData);
-
   const [formMessage, setFormMessage] = useState("");
   const [show, setShow] = useState(false);
 
