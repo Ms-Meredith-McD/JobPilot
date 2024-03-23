@@ -6,9 +6,7 @@ import Modal from "react-bootstrap/Modal";
 
 export default function Interview(props) {
   const { interviewDate } = props.trackerdata;
-  console.log("destructured data", props.trackerdata);
   const [interviewData, setInterviewData] = useState({});
-  console.log("state", interviewData);
   const [formMessage, setFormMessage] = useState("");
   const [show, setShow] = useState(false);
   const [submitted, setSubmitted] = useState(false);

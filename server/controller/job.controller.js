@@ -57,10 +57,23 @@ async function updateJobById(id, data) {
 
 async function deleteJobById(id) {
   try {
+    const job = await Job.findById(id);
+
+    if (!job) {
+      throw new Error("Job not found");
+    }
+
+    // Delete the associated tracker
+    await Tracker.findOneAndDelete({ _id: job.tracker });
+
+    // Remove the job reference from the user's job list
+    await User.findByIdAndUpdate(job.user, { $pull: { jobs: job._id } });
+
+    // Delete the job
     return await Job.findByIdAndDelete(id);
   } catch (err) {
-    console.log(err.message)
-    throw new Error(err)
+    console.log(err.message);
+    throw new Error(err);
   }
 }
 

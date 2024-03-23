@@ -28,6 +28,10 @@ function Jobs() {
   useEffect(() => {
     if (userData) getJobs();
   }, [userData]);
+
+  // useEffect(() => {
+  //   getJobs();
+  // }, [userJobs]);
   return (
     <>
       <section className="jobs page-section bg-stars">
@@ -38,7 +42,7 @@ function Jobs() {
             <FormAddJob />
           </div>
           {userJobs.map((job) => (
-            <Tracker key={job._id} job={job} />
+            <Tracker key={job._id} job={job} getJobs={getJobs} />
           ))}
         </div>
       </section>
