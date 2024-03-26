@@ -5,13 +5,20 @@
   display: grid;
   gap: 1.5rem;
   margin-bottom: 4rem;
-  border: 0.5px solid v.$color-grey-dark;
-  border-radius: 1rem;
-  padding: 2rem;
+  border-top: 0.5px solid v.$color-grey-dark;
+  width: 100%;
+  padding-top: 2rem;
+
+  @include m.respond(bp-sm) {
+    border: 0.5px solid v.$color-grey-dark;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: auto;
+  }
 
   &__row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
     gap: 2.5rem;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -32,6 +39,7 @@
   }
 
   &__title {
+    text-align: right;
     @include m.respond(bp-sm) {
       justify-self: start;
     }
