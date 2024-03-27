@@ -8,7 +8,7 @@ export default function Login() {
 
   async function submitSignup(e) {
     e.preventDefault();
-    console.log("SIGN",signupData);
+    console.log("SIGN", signupData);
     try {
       const query = await fetch("/api/user", {
         method: "POST",
@@ -18,7 +18,8 @@ export default function Login() {
         },
       }).catch((err) => {
         setFormMessage(
-          err, "We regret that we were unable to sign you up. Please try again."
+          err,
+          "We regret that we were unable to sign you up. Please try again."
         );
       });
 
@@ -48,7 +49,7 @@ export default function Login() {
         },
       });
       const result = await query.json();
-      console.log(result)
+      console.log(result);
 
       if (result.status === "error") {
         setFormMessage("We could not log you in with these credentials.");
@@ -72,87 +73,100 @@ export default function Login() {
 
   return (
     <>
-      <form className="loginForm" onSubmit={submitLogin}>
-        <div className="form-center">
-          <div className="form-group">
-            <label htmlFor="email">Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              value={loginData?.email || ""}
-              onChange={handleLoginChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              placeholder="Password"
-              value={loginData?.password || ""}
-              onChange={handleLoginChange}
-            />
-          </div>
-          <div className=" form-check"></div>
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
-        </div>
-      </form>
+      <section className="page-section">
+        <div className="container">
+          <div className="row g-5">
+            <div className="col-md-6">
+              <h2>Register</h2>
 
-      <form className="signUpForm" onSubmit={submitSignup}>
-        <div className="form-center">
-          <div className="form-group">
-            <label htmlFor="username">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              name="username"
-              aria-describedby="emailHelp"
-              placeholder="Enter name"
-              value={signupData?.username || ""}
-              onChange={handleSignupChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              value={signupData?.email || ""}
-              onChange={handleSignupChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              placeholder="Password"
-              value={signupData?.password || ""}
-              onChange={handleSignupChange}
-            />
-          </div>
-          <div className=" form-check"></div>
-          <button type="submit" className="btn btn-primary">
-            Create Account
-          </button>
-        </div>
-      </form>
+              <form className="signUpForm" onSubmit={submitSignup}>
+                <div className="form-center">
+                  <div className="form-group">
+                    <label htmlFor="username">Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="username"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter name"
+                      value={signupData?.username || ""}
+                      onChange={handleSignupChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Email address</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      name="email"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email"
+                      value={signupData?.email || ""}
+                      onChange={handleSignupChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      name="password"
+                      placeholder="Password"
+                      value={signupData?.password || ""}
+                      onChange={handleSignupChange}
+                    />
+                  </div>
+                  <div className=" form-check"></div>
+                  <button type="submit" className="btn btn-primary">
+                    Create Account
+                  </button>
+                </div>
+              </form>
+            </div>
 
-      {formMessage && formMessage.length > 0 && (
-        <div className="row">
-          <div className="col-12">{formMessage}</div>
+            <div className="col-md-6">
+              <h2>Log in</h2>
+              <form className="loginForm" onSubmit={submitLogin}>
+                <div className="form-center">
+                  <div className="form-group">
+                    <label htmlFor="email">Email address</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      name="email"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email"
+                      value={loginData?.email || ""}
+                      onChange={handleLoginChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      name="password"
+                      placeholder="Password"
+                      value={loginData?.password || ""}
+                      onChange={handleLoginChange}
+                    />
+                  </div>
+                  <div className=" form-check"></div>
+                  <button type="submit" className="btn btn-primary">
+                    Login
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-      )}
+
+        {formMessage && formMessage.length > 0 && (
+          <div className="row">
+            <div className="col-12">{formMessage}</div>
+          </div>
+        )}
+      </section>
     </>
   );
 }
