@@ -4,7 +4,7 @@
   &__container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
 
     @include m.respond(bp-sm) {
       align-items: start;

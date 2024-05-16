@@ -27,8 +27,8 @@ const JobsAccordion = () => {
       {userJobs.map((job, idx) => (
         <Accordion.Item key={idx} eventKey={idx}>
           <Accordion.Header>
-            <h2>{job.company}</h2>
-            <h3>{job.jobTitle}</h3>
+            <span>{job.company}</span>
+            <span>{job.jobTitle}</span>
             <Link to={job.website} target="_blank" rel="noopener noreferrer">
               open website
             </Link>

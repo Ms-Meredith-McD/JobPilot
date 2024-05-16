@@ -37,17 +37,10 @@ const Tracker = memo(function Tracker({ job, getJobs }) {
   return (
     <>
       <section className="tracker">
-        <div className="tracker__row tracker__row--end">
-          <h3 className="tracker__title">{company}</h3>
+        {/* <div className="tracker__row tracker__row--end">
           <DeleteJob jobId={_id} getJobs={getJobs} />
-        </div>
+        </div> */}
 
-        <div className="tracker__row tracker__row--end">
-          <h4 className="tracker__title">{jobTitle}</h4>
-          <a className="tracker__joblink" href={website} target="_blank">
-            <h4 className="tracker__website">{website}</h4>
-          </a>
-        </div>
         <div className="tracker__row">
           {components.map((Component, index) => (
             <div className="tracker__button" key={index}>
@@ -55,6 +48,7 @@ const Tracker = memo(function Tracker({ job, getJobs }) {
             </div>
           ))}
         </div>
+        <DeleteJob jobId={_id} getJobs={getJobs} />
       </section>
     </>
   );
