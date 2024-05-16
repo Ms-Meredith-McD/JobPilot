@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Welcome from "../components/Welcome";
+import jobsAccordion from "../components/JobsAccordion";
 import Tracker from "../components/Tracker";
 import FormModal from "../components/Modal";
 import FormAddJob from "../components/FormAddJob";
 
 import useVerifyUser from "../hooks/useVerifyUser";
+import JobsAccordion from "../components/JobsAccordion";
 
 // Establsh who is logged in: user:  Context will have username, email, _id
 // Query me backend: look for context.user._id from auth.js
@@ -38,9 +40,7 @@ function Jobs() {
             <h2 className="mb-4">Choose your mission</h2>
             <FormAddJob />
           </div>
-          {userJobs.map((job) => (
-            <Tracker key={job._id} job={job} getJobs={getJobs} />
-          ))}
+          <JobsAccordion />
         </div>
       </section>
     </>
