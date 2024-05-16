@@ -9,7 +9,6 @@ import Note from "../components/Note";
 const Tracker = memo(function Tracker({ job, getJobs }) {
   const [trackerdata, setTrackerData] = useState({});
   const { _id, user, company, website, jobTitle, tracker } = job;
-  console.log("job", job);
 
   // Define an array of components
   const components = [
@@ -24,7 +23,6 @@ const Tracker = memo(function Tracker({ job, getJobs }) {
     async function getTracker() {
       try {
         const rawTrackerData = await fetch(`/api/tracker/${tracker}`);
-        console.log(tracker);
         const { payload } = await rawTrackerData.json();
         setTrackerData(payload);
       } catch (error) {
