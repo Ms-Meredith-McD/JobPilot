@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
-import Button from "react-bootstrap/esm/Button";
 import Modal from "react-bootstrap/Modal";
+import { FaUserAlt } from "react-icons/fa";
 
 const Profile = ({ profile }) => {
   const [userProfile, setUserProfile] = useState({ profile });
+  const [show, setShow] = useState(false);
 
-  const handleShow = function () {
-    console.log(userProfile);
-  };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
 
   return (
     <>
-      <Button className="profile__button" onClick={handleShow}>
-        ME
-      </Button>
-      <Modal>
+      <button className="profile__button" onClick={handleShow}>
+      <FaUserAlt />
+      </button>
+      <Modal size="lg" centered show={show} onHide={handleClose}>
         <h2>PROFILE</h2>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur
-          mollitia eaque harum atque eligendi eos voluptas saepe. Blanditiis,
-          assumenda expedita esse corporis adipisci aperiam? Magnam doloremque
-          commodi totam necessitatibus ab?
+          Hi, my name is Meredith and I like Molasses. My husband's name is Ryan and he likes Rice.
         </p>
       </Modal>
     </>

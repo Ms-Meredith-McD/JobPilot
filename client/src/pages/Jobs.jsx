@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Welcome from "../components/Welcome";
 import JobsAccordion from "../components/JobsAccordion";
-import Profile from "../components/Profile";
 import FormAddJob from "../components/FormAddJob";
 
 import useVerifyUser from "../hooks/useVerifyUser";
@@ -31,7 +30,6 @@ function Jobs() {
   return (
     <>
       <section className="jobs page-section bg-stars">
-        <Profile profile={userJobs.profile} />
         <div className="jobs__container container">
           <div className="jobs__page-top">
             <Welcome />
