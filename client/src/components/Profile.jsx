@@ -52,8 +52,14 @@ export default function Profile({ profile }) {
   };
 
   useEffect(() => {
-    console.log(userData);
-  }, []);
+    profile &&
+      setProfileData({
+        elevator: profile.elevator,
+        github: profile.github,
+        linkedin: profile.linkedin,
+        portfolio: profile.portfolio,
+      });
+  }, [profile]);
 
   return (
     <>
