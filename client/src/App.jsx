@@ -15,7 +15,6 @@ function App() {
   const { isLoggedIn, userData } = useVerifyUser();
   function verifyUser() {
     const cookie = Cookie.get("auth_cookie");
-    console.log(cookie);
   }
 
   useEffect(() => {
