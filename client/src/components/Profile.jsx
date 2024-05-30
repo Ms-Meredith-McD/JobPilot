@@ -19,7 +19,7 @@ const Profile = ({ profile }) => {
       <Modal size="lg" centered show={show} onHide={handleClose}>
         <h2>PROFILE</h2>
         <p>
-          Hi, my name is Meredith and I like Molasses. My husband's name is Ryan and he likes Rice.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec accumsan felis. Proin eget augue dui. Suspendisse ullamcorper, nulla sed pellentesque porttitor, tellus enim maximus neque
         </p>
       </Modal>
     </>
