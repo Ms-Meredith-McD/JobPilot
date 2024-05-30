@@ -12,21 +12,36 @@ import Cookie from "js-cookie";
 import useVerifyUser from "./hooks/useVerifyUser";
 
 function App() {
+  const [userProfile, setUserProfile] = useState({});
   const { isLoggedIn, userData } = useVerifyUser();
   function verifyUser() {
     const cookie = Cookie.get("auth_cookie");
-    console.log(cookie);
+  }
+
+  async function getProfile() {
+    try {
+      const profile = await fetch(`/api/user/${userData._id}`);
+      const { payload } = await profile.json();
+      setUserProfile(payload.profile);
+      console.log(userProfile);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
     verifyUser();
   }, []);
 
+  useEffect(() => {
+    if (userData) getProfile();
+  }, [userData]);
+
   return (
     <>
       <div className="page-container">
         <BrowserRouter>
-          <Header />
+          <Header profile={userProfile} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

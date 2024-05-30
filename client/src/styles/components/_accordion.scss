@@ -1,0 +1,26 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.accordion {
+  & * {
+    background-color: transparent;
+  }
+
+  &-header * {
+    color: v.$font-light;
+    display: flex;
+    font-size: 2rem;
+    gap: 2rem;
+    justify-content: space-evenly;
+  }
+
+  &-button:not(.collapsed) {
+    color: v.$font-light;
+    background-color: transparent;
+  }
+
+  &-button::after {
+    background-color: v.$font-light;
+    border-radius: 500px;
+  }
+}

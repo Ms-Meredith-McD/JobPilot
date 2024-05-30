@@ -54,7 +54,6 @@ function FormAddJob(props) {
 
   useEffect(() => {
     userData && setFormState({ ...formState, user: userData._id });
-    console.log(formState);
   }, [userData]);
 
   return (

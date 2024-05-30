@@ -9,7 +9,6 @@ import Note from "../components/Note";
 const Tracker = memo(function Tracker({ job, getJobs }) {
   const [trackerdata, setTrackerData] = useState({});
   const { _id, user, company, website, jobTitle, tracker } = job;
-  console.log("job", job);
 
   // Define an array of components
   const components = [
@@ -24,7 +23,6 @@ const Tracker = memo(function Tracker({ job, getJobs }) {
     async function getTracker() {
       try {
         const rawTrackerData = await fetch(`/api/tracker/${tracker}`);
-        console.log(tracker);
         const { payload } = await rawTrackerData.json();
         setTrackerData(payload);
       } catch (error) {
@@ -37,17 +35,10 @@ const Tracker = memo(function Tracker({ job, getJobs }) {
   return (
     <>
       <section className="tracker">
-        <div className="tracker__row tracker__row--end">
-          <h3 className="tracker__title">{company}</h3>
+        {/* <div className="tracker__row tracker__row--end">
           <DeleteJob jobId={_id} getJobs={getJobs} />
-        </div>
+        </div> */}
 
-        <div className="tracker__row tracker__row--end">
-          <h4 className="tracker__title">{jobTitle}</h4>
-          <a className="tracker__joblink" href={website} target="_blank">
-            <h4 className="tracker__website">{website}</h4>
-          </a>
-        </div>
         <div className="tracker__row">
           {components.map((Component, index) => (
             <div className="tracker__button" key={index}>
@@ -55,6 +46,7 @@ const Tracker = memo(function Tracker({ job, getJobs }) {
             </div>
           ))}
         </div>
+        <DeleteJob jobId={_id} getJobs={getJobs} />
       </section>
     </>
   );

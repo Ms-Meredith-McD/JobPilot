@@ -168,6 +168,71 @@ const Resources = () => {
             </ul>
           </div>
           <div className="resume-column">
+            <h2>Entry-Level:</h2>
+            <ul className="list">
+              <li>
+                <Link
+                  to="https://www.diversifytech.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Diversify Tech
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="https://www.brooksource.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Brooksource
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="https://www.apexsystems.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apex Systems
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="https://techjobsforgood.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Tech Jobs for Good
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="https://builtin.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  builtin
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="https://www.zippia.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Zippia
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="resume-column">
             <h2>Contracts:</h2>
             <ul className="list">
               <li>

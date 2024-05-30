@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Welcome from "../components/Welcome";
-import Tracker from "../components/Tracker";
-import FormModal from "../components/Modal";
+import JobsAccordion from "../components/JobsAccordion";
 import FormAddJob from "../components/FormAddJob";
 
 import useVerifyUser from "../hooks/useVerifyUser";
@@ -18,7 +17,6 @@ function Jobs() {
     try {
       const jobs = await fetch(`/api/user/${userData._id}`);
       const { payload } = await jobs.json();
-      console.log("jobsPayload", payload);
       setUserJobs(payload.jobs);
     } catch (error) {
       console.log(error);
@@ -38,9 +36,7 @@ function Jobs() {
             <h2 className="mb-4">Choose your mission</h2>
             <FormAddJob />
           </div>
-          {userJobs.map((job) => (
-            <Tracker key={job._id} job={job} getJobs={getJobs} />
-          ))}
+          <JobsAccordion />
         </div>
       </section>
     </>

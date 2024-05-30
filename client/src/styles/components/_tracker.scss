@@ -18,7 +18,8 @@
 
   &__row {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
     gap: 2.5rem;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -27,6 +28,10 @@
       display: flex;
       justify-content: start;
       margin: 0;
+    }
+
+    @include m.respond(bp-md) {
+      flex-direction: row;
     }
 
     &--end {
@@ -46,12 +51,16 @@
   }
 
   &__button > button {
-    height: 10rem;
     color: #2d2d2d;
+    width: 100%;
     background-color: v.$color-white;
     border: none;
-    width: 10rem;
     font-size: 1.6rem;
+
+    @include m.respond(bp-md) {
+      height: 10rem;
+      width: 10rem;
+    }
 
     @include m.respond(bp-lg) {
       width: 10rem;
