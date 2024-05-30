@@ -4,9 +4,9 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Profile from "./Profile"
+import Profile from "./Profile";
 
-function Header() {
+function Header({ profile }) {
   const { isLoggedIn, logout } = useVerifyUser();
   return (
     <>
@@ -16,7 +16,7 @@ function Header() {
           <Navbar.Brand className="header__title" href="/jobs">
             JobPilot
           </Navbar.Brand>
-          {isLoggedIn && <Profile />}
+          {isLoggedIn && <Profile profile={profile} />}
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
