@@ -17,7 +17,9 @@ const userSchema = new mongoose.Schema({
     linkedin: { type: String },
     resumeTemplate: { type: String },
     coverLetter: { type: String },
-    elevator: { type: String }
+    elevator: { type: String },
+    resumeFile: { type: String }, // Store the path or URL to the uploaded resume file
+    coverLetterFile: { type: String }, // Store the path or URL to the uploaded cover letter file
   }
 });
 
