@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require("cookie-parser");
-const multer = require("multer")
+
 
 
 const db = require('./config/connection');
@@ -17,18 +17,6 @@ app.use(express.json());
 
 
 app.use(routes);
-
-// Configure multer to save files to the "uploads" folder
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "uploads"));
-  },
-  filename: (req, file, cb) => {
-    const userUpload = `${Date.now()}-${file.originalname}`;
-    cb(null, userUpload);
-  },
-});
-
 
 // app.listen(3001, () => {
 //   console.log("Server running on port 3001");
