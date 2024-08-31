@@ -15,5 +15,7 @@
   "devDependencies": {
     "concurrently": "^5.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "multer": "^1.4.5-lts.1"
+  }
 }

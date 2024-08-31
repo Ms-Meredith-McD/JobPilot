@@ -4,6 +4,7 @@ import useVerifyUser from "../hooks/useVerifyUser";
 import { FaUserAlt } from "react-icons/fa";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { handleResumeUpload, handleCoverLetterUpload } from '../handlers/fileHandlers';
 
 export default function Profile({ profile }) {
   const [userProfile, setUserProfile] = useState({ profile });
@@ -13,6 +14,10 @@ export default function Profile({ profile }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // imported handlers with the setter function
+  const resumeUpload = handleResumeUpload(setProfileData, profileData);
+  const coverLetterUpload = handleCoverLetterUpload(setProfileData, profileData);
 
   const submitProfileData = async (e) => {
     e.preventDefault();
@@ -27,6 +32,8 @@ export default function Profile({ profile }) {
             github: profileData.github,
             linkedin: profileData.linkedin,
             elevator: profileData.elevator,
+            resumeFile: profileData.resumeFile,
+            coverLetterFile: profileData.coverLetterFile
           },
         }),
         headers: {
@@ -115,6 +122,31 @@ export default function Profile({ profile }) {
               aria-describedby="profileLinkedIn"
               value={profileData.linkedin}
               onChange={handleInputChange}
+            />
+          </Form.Group>
+          {/* file upload items below */}
+          <Form.Group controlId="resume">
+            <Form.Label>Upload Resume (PDF DOC or DOCX)</Form.Label>
+            <Form.Control
+              type="file"
+              placeholder="Resume"
+              name="resume"
+              aria-describedby="profileResume"
+              value={profileData.resume}
+              accept=".pdf,.docx, .doc"
+              onChange={handleResumeUpload}
+            />
+          </Form.Group>
+          <Form.Group controlId="coverLetter">
+            <Form.Label>Upload Cover Letter (PDF DOC or DOCX)</Form.Label>
+            <Form.Control
+              type="file"
+              placeholder="CoverLetter"
+              name="coverletter"
+              aria-describedby="profileCoverLetter"
+              value={profileData.coverletter}
+              accept=".pdf,.docx, .doc"
+              onChange={handleCoverLetterUpload}
             />
           </Form.Group>
           <Form.Group>
