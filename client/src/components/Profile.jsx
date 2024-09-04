@@ -4,20 +4,26 @@ import useVerifyUser from "../hooks/useVerifyUser";
 import { FaUserAlt } from "react-icons/fa";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { handleResumeUpload, handleCoverLetterUpload } from '../handlers/fileHandlers';
+import PdfUpload from "./PdfUpload";
 
 export default function Profile({ profile }) {
   const [userProfile, setUserProfile] = useState({ profile });
   const [show, setShow] = useState(false);
   const [profileData, setProfileData] = useState({});
+  const [uploadedFileName, setUploadedFileName] = useState(''); // State to store uploaded file name
   const { userData } = useVerifyUser();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // imported handlers with the setter function
-  const resumeUpload = handleResumeUpload(setProfileData, profileData);
-  const coverLetterUpload = handleCoverLetterUpload(setProfileData, profileData);
+// Handler to update profile data with uploaded resume URL
+const handleResumeUpload = (uploadedFileUrl) => {
+  setProfileData({
+    ...profileData,
+    resumeFile: uploadedFileUrl, // Update the resume file URL in the state
+  });
+  setUploadedFileName(fileName); // Update the state with the uploaded file name
+};
 
   const submitProfileData = async (e) => {
     e.preventDefault();
@@ -32,8 +38,7 @@ export default function Profile({ profile }) {
             github: profileData.github,
             linkedin: profileData.linkedin,
             elevator: profileData.elevator,
-            resumeFile: profileData.resumeFile,
-            coverLetterFile: profileData.coverLetterFile
+            resumeFile: profileData.resumeFile
           },
         }),
         headers: {
@@ -126,28 +131,9 @@ export default function Profile({ profile }) {
           </Form.Group>
           {/* file upload items below */}
           <Form.Group controlId="resume">
-            <Form.Label>Upload Resume (PDF DOC or DOCX)</Form.Label>
-            <Form.Control
-              type="file"
-              placeholder="Resume"
-              name="resume"
-              aria-describedby="profileResume"
-              value={profileData.resume}
-              accept=".pdf,.docx, .doc"
-              onChange={handleResumeUpload}
-            />
-          </Form.Group>
-          <Form.Group controlId="coverLetter">
-            <Form.Label>Upload Cover Letter (PDF DOC or DOCX)</Form.Label>
-            <Form.Control
-              type="file"
-              placeholder="CoverLetter"
-              name="coverletter"
-              aria-describedby="profileCoverLetter"
-              value={profileData.coverletter}
-              accept=".pdf,.docx, .doc"
-              onChange={handleCoverLetterUpload}
-            />
+            <Form.Label>Upload Resume (PDF)</Form.Label>
+            <PdfUpload onUpload={handleResumeUpload} />
+            {uploadedFileName && <p>Uploaded File: {uploadedFileName}</p>}
           </Form.Group>
           <Form.Group>
             <Button variant="primary" type="submit" onClick={submitProfileData}>
