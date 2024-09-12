@@ -5,6 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Profile from "./Profile";
+import LoginModal from "./LoginModal";
 
 function Header({ profile }) {
   const { isLoggedIn, logout } = useVerifyUser();
@@ -31,9 +32,10 @@ function Header({ profile }) {
                   Logout
                 </button>
               ) : (
-                <Link type="button" className="btn btn-light" to="/login">
-                  Login or signup please!
-                </Link>
+                // <Link type="button" className="btn btn-light" to="/login">
+                //   Login or signup please!
+                // </Link>
+                <LoginModal btnStyle={"button--login"} />
               )}
             </Nav>
           </Navbar.Collapse>
