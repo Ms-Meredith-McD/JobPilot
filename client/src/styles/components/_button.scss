@@ -1,3 +1,5 @@
+@use "../base/variables" as v;
+
 .button {
   &--trash {
     // background: none;
@@ -5,5 +7,11 @@
     border: none;
     font-size: 1.5rem;
     // min-width: 5rem;
+  }
+
+  &--login {
+    background-color: v.$color-blue;
+    border: none;
+    font-size: 2rem;
   }
 }
