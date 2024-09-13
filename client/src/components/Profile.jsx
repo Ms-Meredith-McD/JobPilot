@@ -10,20 +10,20 @@ export default function Profile({ profile }) {
   const [userProfile, setUserProfile] = useState({ profile });
   const [show, setShow] = useState(false);
   const [profileData, setProfileData] = useState({});
-  const [uploadedFileName, setUploadedFileName] = useState(''); // State to store uploaded file name
+  const [uploadedFileName, setUploadedFileName] = useState(""); // State to store uploaded file name
   const { userData } = useVerifyUser();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-// Handler to update profile data with uploaded resume URL
-const handleResumeUpload = (uploadedFileUrl) => {
-  setProfileData({
-    ...profileData,
-    resumeFile: uploadedFileUrl, // Update the resume file URL in the state
-  });
-  setUploadedFileName(fileName); // Update the state with the uploaded file name
-};
+  // Handler to update profile data with uploaded resume URL
+  const handleResumeUpload = (uploadedFileUrl) => {
+    setProfileData({
+      ...profileData,
+      resumeFile: uploadedFileUrl, // Update the resume file URL in the state
+    });
+    setUploadedFileName(fileName); // Update the state with the uploaded file name
+  };
 
   const submitProfileData = async (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ const handleResumeUpload = (uploadedFileUrl) => {
             github: profileData.github,
             linkedin: profileData.linkedin,
             elevator: profileData.elevator,
-            resumeFile: profileData.resumeFile
+            resumeFile: profileData.resumeFile,
           },
         }),
         headers: {
@@ -136,7 +136,12 @@ const handleResumeUpload = (uploadedFileUrl) => {
             {uploadedFileName && <p>Uploaded File: {uploadedFileName}</p>}
           </Form.Group>
           <Form.Group>
-            <Button variant="primary" type="submit" onClick={submitProfileData}>
+            <Button
+              className="button button--outline"
+              // variant="primary"
+              type="submit"
+              onClick={submitProfileData}
+            >
               Submit
             </Button>
           </Form.Group>

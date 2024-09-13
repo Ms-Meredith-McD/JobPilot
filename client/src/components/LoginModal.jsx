@@ -1,6 +1,7 @@
 import { useState, Children, cloneElement } from "react";
-import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import { RiLoginBoxLine } from "react-icons/ri";
 
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
@@ -13,14 +14,20 @@ function LoginModal({ btnStyle }) {
   const handleClose = () => {
     setShow(false);
     setNewUser(false);
+    setFormMessage("");
   };
   const handleShow = () => setShow(true);
   const updateFormMessage = (content) => setFormMessage(content);
 
+  const redirect = () => {
+    setNewUser(!newUser);
+    setFormMessage("");
+  };
+
   return (
     <>
-      <button className={btnStyle} onClick={handleShow}>
-        Sign In
+      <button className="button button--login" onClick={handleShow}>
+        Sign In <RiLoginBoxLine />
       </button>
 
       <Modal show={show} onHide={handleClose}>
@@ -34,30 +41,10 @@ function LoginModal({ btnStyle }) {
             <div className="col-12">{formMessage}</div>
           </div>
         )}
-        <div>
-          {newUser ? (
-            <>
-              <p>Already a member?</p>
-              <Link
-                type="button"
-                className="btn btn-light"
-                onClick={() => setNewUser(!newUser)}
-              >
-                Let me log in!
-              </Link>
-            </>
-          ) : (
-            <>
-              <p>Create a new account?</p>
-              <Link
-                type="button"
-                className="btn btn-light"
-                onClick={() => setNewUser(!newUser)}
-              >
-                Sign Me Up!
-              </Link>
-            </>
-          )}
+        <div className="submit-button">
+          <Link className="button--outline" onClick={redirect}>
+            {newUser ? "I'm already a member!" : "Create an account"}
+          </Link>
         </div>
       </Modal>
     </>

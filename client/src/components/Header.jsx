@@ -1,6 +1,7 @@
 import useVerifyUser from "../hooks/useVerifyUser";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -26,16 +27,16 @@ function Header({ profile }) {
               {isLoggedIn === true ? (
                 <button
                   type="button"
-                  className="btn btn-light"
+                  className="button button--login"
                   onClick={logout}
                 >
-                  Logout
+                  Logout <RiLogoutBoxLine />
                 </button>
               ) : (
                 // <Link type="button" className="btn btn-light" to="/login">
                 //   Login or signup please!
                 // </Link>
-                <LoginModal btnStyle={"button--login"} />
+                <LoginModal />
               )}
             </Nav>
           </Navbar.Collapse>

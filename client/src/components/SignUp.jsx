@@ -42,7 +42,7 @@ const SignUp = ({ updateFormMessage }) => {
   return (
     <>
       <h2>Register</h2>
-      <form className="signUpForm" onSubmit={submitSignup}>
+      <form className="loginForm" onSubmit={submitSignup}>
         <div className="form-center">
           <div className="form-group">
             <label htmlFor="username">Name</label>
@@ -80,7 +80,7 @@ const SignUp = ({ updateFormMessage }) => {
             />
           </div>
           <div className=" form-check"></div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="button button--signin-form">
             Create Account
           </button>
         </div>

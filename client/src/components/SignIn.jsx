@@ -60,7 +60,7 @@ function SignIn({ updateFormMessage }) {
             />
           </div>
           <div className=" form-check"></div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="button button--signin-form">
             Login
           </button>
         </div>
