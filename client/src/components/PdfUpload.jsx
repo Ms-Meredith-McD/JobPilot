@@ -7,10 +7,9 @@ const PdfUpload = ({ onUpload }) => {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    console.log("selectedFile:", selectedFile);
     setFile(selectedFile);
     setFileName(selectedFile.name); // Update file name state
-    console.log("File:", file);
+    console.log("File selected:", selectedFile);
   };
 
   const handleUpload = async (e) => {
@@ -27,7 +26,7 @@ const PdfUpload = ({ onUpload }) => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "pdfupload"); // Replace with your actual upload preset
-    console.log("formData:", formData);
+
     try {
       console.log("Uploading file...");
       const response = await fetch(
@@ -48,7 +47,7 @@ const PdfUpload = ({ onUpload }) => {
         console.error("Error from Cloudinary:", data.error.message);
         throw new Error(data.error.message);
       }
-      console.log("data returned:", data);
+
       const uploadedFileUrl = data.secure_url; // URL of the uploaded PDF
       console.log("File uploaded successfully:", uploadedFileUrl);
       onUpload(uploadedFileUrl, fileName); // Pass the uploaded file URL and file name back to the parent component
