@@ -42,7 +42,7 @@ function LoginModal({ btnStyle }) {
           </div>
         )}
         <div className="submit-button">
-          <Link className="button--outline" onClick={redirect}>
+          <Link className="button button--link-sm" onClick={redirect}>
             {newUser ? "I'm already a member!" : "Create an account"}
           </Link>
         </div>

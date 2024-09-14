@@ -80,7 +80,7 @@ const SignUp = ({ updateFormMessage }) => {
             />
           </div>
           <div className=" form-check"></div>
-          <button type="submit" className="button button--signin-form">
+          <button type="submit" className="button button--outline">
             Create Account
           </button>
         </div>
