@@ -26,7 +26,7 @@ const SignUp = ({ updateFormMessage }) => {
           "We regret that we were unable to sign you up. Please try again."
         );
       } else {
-        window.location.href = "/";
+        window.location.href = "/jobs";
       }
     } catch (err) {
       updateFormMessage(

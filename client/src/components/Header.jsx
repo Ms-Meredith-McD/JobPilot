@@ -8,7 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Profile from "./Profile";
 import LoginModal from "./LoginModal";
 
-function Header({ profile }) {
+function Header() {
   const { isLoggedIn, logout } = useVerifyUser();
   return (
     <>
@@ -18,7 +18,7 @@ function Header({ profile }) {
           <Navbar.Brand className="header__title" href="/jobs">
             JobPilot
           </Navbar.Brand>
-          {isLoggedIn && <Profile profile={profile} />}
+          {isLoggedIn && <Profile />}
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">

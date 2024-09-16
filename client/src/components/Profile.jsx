@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { ProfileContext } from "../context/ProfileContext";
 import Modal from "react-bootstrap/Modal";
 import useVerifyUser from "../hooks/useVerifyUser";
 import { FaUserAlt } from "react-icons/fa";
@@ -6,8 +7,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import PdfUpload from "./PdfUpload";
 
-export default function Profile({ profile }) {
-  const [userProfile, setUserProfile] = useState({ profile });
+export default function Profile() {
+  const { userProfile } = useContext(ProfileContext);
   const [show, setShow] = useState(false);
   const [profileData, setProfileData] = useState({});
   const [uploadedFileName, setUploadedFileName] = useState(""); // State to store uploaded file name
@@ -17,7 +18,7 @@ export default function Profile({ profile }) {
   const handleShow = () => setShow(true);
 
   // Handler to update profile data with uploaded resume URL
-  const handleResumeUpload = (uploadedFileUrl) => {
+  const handleResumeUpload = (uploadedFileUrl, fileName) => {
     setProfileData({
       ...profileData,
       resumeFile: uploadedFileUrl, // Update the resume file URL in the state
@@ -64,14 +65,18 @@ export default function Profile({ profile }) {
   };
 
   useEffect(() => {
-    profile &&
+    userProfile &&
       setProfileData({
-        elevator: profile.elevator,
-        github: profile.github,
-        linkedin: profile.linkedin,
-        portfolio: profile.portfolio,
+        elevator: userProfile.elevator,
+        github: userProfile.github,
+        linkedin: userProfile.linkedin,
+        portfolio: userProfile.portfolio,
       });
-  }, [profile]);
+  }, [userProfile]);
+
+  useEffect(() => {
+    console.log("userdata:", userData);
+  }, [userData]);
 
   return (
     <>

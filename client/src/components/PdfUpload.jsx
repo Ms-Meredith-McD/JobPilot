@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const PdfUpload = ({ onUpload }) => {
   const [file, setFile] = useState(null);
@@ -9,7 +9,8 @@ const PdfUpload = ({ onUpload }) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
     setFileName(selectedFile.name); // Update file name state
-    console.log("File selected:", selectedFile);
+    console.log("file:", selectedFile);
+    console.log("fileName:", selectedFile.name);
   };
 
   const handleUpload = async (e) => {
@@ -25,12 +26,12 @@ const PdfUpload = ({ onUpload }) => {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "pdfupload"); // Replace with your actual upload preset
+    formData.append("upload_preset", "ml_default"); // Replace with your actual upload preset
 
     try {
       console.log("Uploading file...");
       const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dfsxvz9xk/auto/upload", // Replace 'dfsxvz9xk' with your Cloudinary cloud name
+        "https://api.cloudinary.com/v1_1/dmh3jwwva/auto/upload", // Replace 'dfsxvz9xk' with your Cloudinary cloud name
         {
           method: "POST",
           body: formData,
