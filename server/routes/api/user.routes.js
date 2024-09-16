@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
   try {
     const payload = await createUser(req.body)
     const token = createToken({ _id: payload._id, username: payload.username })
-    console.log(token)
+    console.log("token", token)
     res.status(200).cookie("auth_cookie", token).json({ status: "success", payload })
   } catch (err) {
     console.log(err.message)
