@@ -21,7 +21,7 @@ export default function Profile() {
   const handleResumeUpload = (uploadedFileUrl, fileName) => {
     setProfileData({
       ...profileData,
-      resumeFile: uploadedFileUrl, // Update the resume file URL in the state
+      resumeFile: { name: fileName, url: uploadedFileUrl }, // Update the resume file URL in the state
     });
     setUploadedFileName(fileName); // Update the state with the uploaded file name
   };
