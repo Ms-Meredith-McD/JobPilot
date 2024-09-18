@@ -37,7 +37,7 @@ const DeleteJob = ({ jobId, getJobs }) => {
 
   return (
     <>
-      <Button className="button--trash" onClick={handleShow}>
+      <Button className="button button--trash" onClick={handleShow}>
         <FaTrashCan />
       </Button>
       <Modal size="lg" centered show={show} onHide={handleClose}>

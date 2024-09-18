@@ -1,0 +1,57 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.modal {
+  &-backdrop.show {
+    opacity: 0.97;
+  }
+
+  &-content {
+    border: none;
+    background-color: transparent;
+  }
+
+  &-dialog {
+    height: 100vh;
+    overflow: hidden;
+    margin: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  & form {
+    background-color: transparent;
+    padding: 0;
+    color: v.$font-light;
+  }
+
+  & .submit-button {
+    margin-top: 4rem;
+  }
+}
+
+.modal form {
+  & .form-group {
+    margin-top: 1.5rem;
+  }
+  & label {
+    color: inherit;
+  }
+  & input {
+    font-size: inherit;
+    background-color: rgba(v.$color-grey-dark, 0.8);
+    border: 1px solid v.$color-grey-dark;
+    color: v.$color-grey-light;
+
+    &::placeholder {
+      color: rgba(v.$color-grey-light, 0.5);
+    }
+
+    &:focus {
+      background-color: rgba(v.$color-grey-dark, 0.6);
+      border-color: v.$color-white;
+      box-shadow: none;
+      color: v.$color-white;
+    }
+  }
+}

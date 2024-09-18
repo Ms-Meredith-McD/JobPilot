@@ -16,13 +16,21 @@ async function getUserById(id) {
 
 
 async function createUser(data) {
-  const hash = await bcrypt.hash(data.password, 10)
-  const userData = { ...data, password: hash }
+  const hash = await bcrypt.hash(data.password, 10);
+  const userData = { ...data, password: hash };
   try {
-    return await User.create(userData);
+    const createdUser = await User.create(userData);
+
+    // Use .toObject() to convert the Mongoose document to a plain JS object
+    const userObj = createdUser.toObject();
+
+    // Destructure to remove the password from the returned object
+    const { password, ...newUser } = userObj;
+
+    return newUser; // Return the user object without the password
   } catch (err) {
-    console.log(err.message)
-    throw new Error(err)
+    console.log(err.message);
+    throw new Error(err);
   }
 }
 

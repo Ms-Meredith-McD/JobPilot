@@ -28,6 +28,24 @@
   }
 }
 
+@mixin headerLink {
+  background-color: transparent;
+  border: none;
+  color: v.$color-white;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover,
+  &:active,
+  &:visited,
+  &:focus,
+  &:focus-visible {
+    color: inherit;
+    opacity: 0.5;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
 // @mixin padVertMd {
 //   padding-top: 8%;
 //   padding-bottom: 8%;

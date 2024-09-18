@@ -18,8 +18,14 @@ const userSchema = new mongoose.Schema({
     resumeTemplate: { type: String },
     coverLetter: { type: String },
     elevator: { type: String },
-    resumeFile: { type: String }, // Store the path or URL to the uploaded resume file
-    coverLetterFile: { type: String }, // Store the path or URL to the uploaded cover letter file
+    resumeFile: {
+      name: { type: String },
+      url: { type: String }, // Store the path or URL to the uploaded resume file
+    },
+    coverLetterFile: {
+      name: { type: String },
+      url: { type: String }, // Store the path or URL to the uploaded resume file
+    }, // Store the path or URL to the uploaded cover letter file
   }
 });
 

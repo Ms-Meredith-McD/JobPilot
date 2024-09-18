@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -10,9 +10,10 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Cookie from "js-cookie";
 import useVerifyUser from "./hooks/useVerifyUser";
+import { ProfileContext } from "./context/ProfileContext";
 
 function App() {
-  const [userProfile, setUserProfile] = useState({});
+  const { userProfile, setUserProfile } = useContext(ProfileContext);
   const { isLoggedIn, userData } = useVerifyUser();
   function verifyUser() {
     const cookie = Cookie.get("auth_cookie");
@@ -41,7 +42,7 @@ function App() {
     <>
       <div className="page-container">
         <BrowserRouter>
-          <Header profile={userProfile} />
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

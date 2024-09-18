@@ -11,9 +11,13 @@ header {
 
 .navbar {
   padding: 1rem 2rem;
-  background-color: #1c2128;
+  background-color: v.$color-black;
   display: flex;
   align-items: center;
+
+  // @include m.respond(bp-sm) {
+  //   background-color: transparent;
+  // }
 }
 
 .navbar-brand {
@@ -23,7 +27,7 @@ header {
 
 .navbar-toggler {
   color: v.$color-white;
-  background: dimgray;
+  background: v.$color-grey-light;
 }
 
 .navbar-nav {
@@ -31,7 +35,7 @@ header {
 }
 
 .nav-link {
-  color: v.$color-white;
+  @include m.headerLink;
 }
 
 footer {
@@ -49,4 +53,3 @@ footer,
   border: transparent;
   color: v.$font-light;
 }
-
