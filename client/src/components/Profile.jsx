@@ -137,7 +137,7 @@ export default function Profile() {
           {/* file upload items below */}
           <Form.Group controlId="resume">
             <Form.Label>Upload Resume (PDF)</Form.Label>
-            <PdfUpload onUpload={handleResumeUpload} />
+            <PdfUpload handleResumeUpload={handleResumeUpload} />
             {uploadedFileName && <p>Uploaded File: {uploadedFileName}</p>}
           </Form.Group>
           <Form.Group>

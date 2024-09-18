@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const PdfUpload = ({ onUpload }) => {
+const PdfUpload = ({ handleResumeUpload }) => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState(""); // State to store the file name
   const [isUploading, setIsUploading] = useState(false); // State to track upload status
@@ -51,7 +51,7 @@ const PdfUpload = ({ onUpload }) => {
 
       const uploadedFileUrl = data.secure_url; // URL of the uploaded PDF
       console.log("File uploaded successfully:", uploadedFileUrl);
-      onUpload(uploadedFileUrl, fileName); // Pass the uploaded file URL and file name back to the parent component
+      handleResumeUpload(uploadedFileUrl, fileName); // Pass the uploaded file URL and file name back to the parent component
     } catch (error) {
       console.error("Error uploading file:", error.message || error);
       alert("Failed to upload file. Please try again.");
